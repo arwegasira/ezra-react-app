@@ -2,8 +2,8 @@ import { Form } from 'react-router-dom'
 import { FormInput, SubmitBtn } from '../Components'
 const Login = () => {
   return (
-    <section className='align-element grid place-items-center h-[100svh]'>
-      <Form className='flex flex-col gap-4 pt-4 bg-gray-50 p-4 card rounded-md shadow-md w-[90%] max-w-[25rem]'>
+    <section className='align-element h-[100svh] px-1 mt-12 sm:grid place-items-center'>
+      <Form className='flex flex-col gap-4 pt-4 bg-gray-50 p-4 card rounded-md shadow-md px-1 sm:w-[25rem] px-4'>
         <h4 className='text-center font-medium text-2xl sm:text-3xl tracking-wide'>
           Login
         </h4>
