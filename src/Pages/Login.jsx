@@ -3,7 +3,7 @@ import { FormInput, SubmitBtn } from '../Components'
 const Login = () => {
   return (
     <section className='align-element grid place-items-center h-[100svh]'>
-      <Form className='flex flex-col gap-4 pt-4 bg-gray-50 p-4 card rounded-md shadow-md w-[80%] max-w-[25rem]'>
+      <Form className='flex flex-col gap-4 pt-4 bg-gray-50 p-4 card rounded-md shadow-md w-[90%] max-w-[25rem]'>
         <h4 className='text-center font-medium text-2xl sm:text-3xl tracking-wide'>
           Login
         </h4>
