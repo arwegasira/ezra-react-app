@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .align-element {
+    @apply mx-auto max-w-[90%] px-8;
+  }
+  .primary-btns {
+    @apply bg-blue-800 text-neutral-100;
+  }
+  .primary-btns:hover {
+    @apply bg-blue-600;
+  }
+  .secondary-btns {
+    @apply bg-gray-800 text-neutral-50;
+  }
+  .secondary-btns {
+    @apply bg-gray-600;
+  }
+}

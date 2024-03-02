@@ -1,0 +1,8 @@
+export { default as Home } from './Home'
+export { default as Landing } from './Landing'
+export { default as Login } from './Login'
+export { default as RegisterClient } from './RegisterClient'
+export { default as VerifyAccount } from './VerifyAccount'
+export { default as SingleClient } from './SingleClient'
+export { default as Error } from './Error'
+export { default as Layout } from './Layout'
