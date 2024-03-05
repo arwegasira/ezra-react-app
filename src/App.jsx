@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
+import { store } from './store'
 import { ErrorElement } from './Components'
 import {
   Home,
@@ -11,6 +11,13 @@ import {
   Error,
   Layout,
 } from './Pages'
+
+//actions
+import { action as loginAction } from './Pages/Login'
+
+//loader
+import { loader as landingLoader } from './Pages/Landing'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -21,6 +28,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing></Landing>,
         errorElement: <ErrorElement></ErrorElement>,
+        loader: landingLoader(store),
       },
       {
         path: 'home',
@@ -39,7 +47,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: 'login', element: <Login></Login> },
+  { path: 'login', element: <Login></Login>, action: loginAction(store) },
   { path: 'verifyAccount', element: <VerifyAccount></VerifyAccount> },
 ])
 function App() {
