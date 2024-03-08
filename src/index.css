@@ -4,7 +4,7 @@
 
 @layer components {
   .align-element {
-    @apply mx-auto max-w-[90%] px-8;
+    @apply mx-auto w-[90%] max-w-[80rem] px-1;
   }
   .primary-btns {
     @apply bg-blue-800 text-neutral-100;
