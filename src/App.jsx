@@ -49,8 +49,17 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: 'login', element: <Login></Login>, action: loginAction(store) },
-  { path: 'verifyAccount', element: <VerifyAccount></VerifyAccount> },
+  {
+    path: 'login',
+    element: <Login></Login>,
+    action: loginAction(store),
+    errorElement: <ErrorElement></ErrorElement>,
+  },
+  {
+    path: 'verifyAccount',
+    element: <VerifyAccount></VerifyAccount>,
+    errorElement: <ErrorElement></ErrorElement>,
+  },
 ])
 function App() {
   return <RouterProvider router={router}></RouterProvider>
