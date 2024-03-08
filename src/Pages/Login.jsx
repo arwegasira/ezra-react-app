@@ -1,7 +1,7 @@
 import { Form, redirect } from 'react-router-dom'
 import { FormInput, SubmitBtn } from '../Components'
 import { customFetch } from '../utils'
-import { login } from '../feature/userSlice'
+import { login } from '../feature/user/userSlice'
 import { toast } from 'react-toastify'
 
 export const action =
@@ -11,7 +11,6 @@ export const action =
     const data = Object.fromEntries(formData)
     try {
       const response = await customFetch.post('/auth/login', data)
-      console.log(response.data.user)
       //dispatch login and redirect to home
       store.dispatch(login(response.data.user))
       return redirect('/home')

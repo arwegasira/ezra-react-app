@@ -14,6 +14,7 @@ import {
 
 //actions
 import { action as loginAction } from './Pages/Login'
+import { action as SearchClientAction } from './Components/ClientFilter'
 
 //loader
 import { loader as landingLoader } from './Pages/Landing'
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
         path: 'home',
         element: <Home></Home>,
         errorElement: <ErrorElement></ErrorElement>,
+        action: SearchClientAction(store),
       },
       {
         path: 'registerClient',

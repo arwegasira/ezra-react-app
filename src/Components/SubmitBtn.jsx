@@ -8,6 +8,7 @@ const SubmitBtn = ({ text, size, borderRadius }) => {
       {submitting ? (
         <button
           className={`btn btn-block primary-btns ${size} ${borderRadius}`}
+          disabled={submitting}
         >
           <span className='loading loading-spinner '></span>
           Submitting
