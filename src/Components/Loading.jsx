@@ -1,6 +1,6 @@
 const Loading = () => {
   return (
-    <div className='h-[100shv] grid place-items-center'>
+    <div className='h-[100svh] grid place-items-center'>
       <span className='loading loading-bars loading-lg'></span>
     </div>
   )

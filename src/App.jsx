@@ -11,14 +11,15 @@ import {
   Error,
   Layout,
 } from './Pages'
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 //actions
 import { action as loginAction } from './Pages/Login'
-import { action as SearchClientAction } from './Components/ClientFilter'
 
 //loader
 import { loader as landingLoader } from './Pages/Landing'
-
+import { loader as homeLoader } from './Pages/Home'
+const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: '/',
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
         path: 'home',
         element: <Home></Home>,
         errorElement: <ErrorElement></ErrorElement>,
-        action: SearchClientAction(store),
+        loader: homeLoader(queryClient),
       },
       {
         path: 'registerClient',
@@ -61,8 +62,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorElement></ErrorElement>,
   },
 ])
+
 function App() {
-  return <RouterProvider router={router}></RouterProvider>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <RouterProvider router={router}></RouterProvider>
+    </QueryClientProvider>
+  )
 }
 
 export default App
