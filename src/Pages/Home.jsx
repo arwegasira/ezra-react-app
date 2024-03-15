@@ -1,10 +1,10 @@
-import { ClientFilter } from '../Components'
+import { ClientFilter, PaginationContainer } from '../Components'
 import { useSelector } from 'react-redux'
 import { ClientsContainer } from '../Components'
 import { customFetch } from '../utils'
 
 const clientsQuery = (params, url) => {
-  const { idNumber, phoneNumber, email, firstName, lastName } = params
+  const { idNumber, phoneNumber, email, firstName, lastName, page } = params
 
   return {
     queryKey: [
@@ -14,6 +14,7 @@ const clientsQuery = (params, url) => {
       email ?? '',
       lastName ?? '',
       firstName ?? '',
+      Number(page) ?? 1,
     ],
     queryFn: () => customFetch.get(url),
   }
@@ -24,9 +25,9 @@ export const loader =
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ])
-    console.log(params)
+
     try {
-      const url = `/client/clients?idNumber=${params.idNumber}&&firstName=${params.firstName}&&lastName=${params.lastName}&&email=${params.email}&&phoneNumber=${params.phoneNumber}`
+      const url = `/client/clients?idNumber=${params.idNumber}&&firstName=${params.firstName}&&lastName=${params.lastName}&&email=${params.email}&&phoneNumber=${params.phoneNumber}&&page=${params.page}`
       const response = await queryClient.ensureQueryData(
         clientsQuery(params, url)
       )
@@ -34,7 +35,8 @@ export const loader =
       return {
         params,
         clients: response.data.clients,
-        pages: response.data.numofPages,
+        pageCount: response.data.numofPages,
+        page: response.data.page,
         totalClients: response.data.totalClients,
       }
     } catch (error) {
@@ -48,6 +50,7 @@ const Home = () => {
     <>
       <ClientFilter></ClientFilter>
       <ClientsContainer></ClientsContainer>
+      <PaginationContainer></PaginationContainer>
     </>
   )
 }

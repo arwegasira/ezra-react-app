@@ -10,7 +10,7 @@ const Client = ({
   phoneNumber,
 }) => {
   return (
-    <article className='bg-base-200 rounded-lg shadow-md px-4 py-8 w-full h-86 md:w-96'>
+    <article className='bg-base-200 rounded-lg shadow-md px-4 py-8 '>
       <div className='flex flex-col'>
         <header className='flex justify-between'>
           <strong>
