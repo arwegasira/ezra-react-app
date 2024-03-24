@@ -1,4 +1,5 @@
 import { useLoaderData } from 'react-router-dom'
+import { dateFormat } from '../utils'
 const ClientInfoDetails = () => {
   const { client } = useLoaderData()
   const {
@@ -12,18 +13,19 @@ const ClientInfoDetails = () => {
     state,
     country,
   } = client
+
   return (
     <>
-      <div className='mt-12 flex flex-col gap-4 md:flex-row md:justify-around md:border md:px-4 md:py-0 bg-red-200'>
+      <div className='mt-10 flex flex-col gap-4 lg:grid lg:grid-cols-3 lg:border lg:px-4 lg:py-0'>
         {/* General info */}
-        <div className='py-3 border-b flex flex-col gap-1 md:border-b-0 md:border-r md:pr-6 md:py-6'>
+        <div className='py-3 border-b flex flex-col gap-1 lg:border-b-0 lg:border-r lg:pr-6 lg:py-6'>
           <p className='flex gap-1'>
             <span className='font-medium'>Nationality:</span>
             <span>{nationality}</span>
           </p>
           <p className='flex gap-1'>
             <span className='font-medium'>DOB:</span>
-            <span>{dob}</span>
+            <span>{dateFormat(dob)}</span>
           </p>
           <p className='flex gap-1'>
             <span className='font-medium'>Profession:</span>
@@ -35,7 +37,7 @@ const ClientInfoDetails = () => {
           </p>
         </div>
         {/* Contact info */}
-        <div className='py-3 border-b flex flex-col gap-1'>
+        <div className='py-3 border-b flex flex-col gap-1 lg:border-b-0 lg:border-r lg:pr-6 lg:py-6'>
           <p className='flex gap-1'>
             <span className='font-medium'>Phone #:</span>
             <span>{phoneNumber}</span>
@@ -46,7 +48,7 @@ const ClientInfoDetails = () => {
           </p>
         </div>
         {/* Address info */}
-        <div className='py-3 border-b flex flex-col gap-1'>
+        <div className='py-3 border-b flex flex-col gap-1 lg:border-b-0  lg:pr-6 lg:py-6'>
           <p className='flex gap-1'>
             <span className='font-medium'>City:</span>
             <span>{city}</span>
