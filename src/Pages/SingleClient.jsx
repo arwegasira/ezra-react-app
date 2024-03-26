@@ -1,6 +1,12 @@
 import { customFetch } from '../utils'
 import { useLoaderData } from 'react-router-dom'
-import { ClientInfoDetails, ClientProfile } from '../Components'
+import { ClientInfoDetails, ClientProfile, EditDialog } from '../Components'
+import { useSelector, useDispatch } from 'react-redux'
+import EditUserProfile from '../Components/EditUserProfile'
+
+const formDialogs = {
+  editUserProfile: <EditUserProfile></EditUserProfile>,
+}
 export const loader = async ({ params }) => {
   const { id } = params
   const url = `client/getclientbyid/${id}`
@@ -9,25 +15,14 @@ export const loader = async ({ params }) => {
   return { client: response.data.client }
 }
 const SingleClient = () => {
-  const { client } = useLoaderData()
-  const {
-    firstName,
-    lastName,
-    middleName,
-    nationality,
-    dob,
-    profesional: profession,
-    company,
-    phoneNumber,
-    email,
-    city,
-    state,
-    country,
-  } = client
+  const { currentForm } = useSelector((store) => store.editDialogState)
+  const current = formDialogs[currentForm]
+
   return (
     <>
       <ClientProfile></ClientProfile>
       <ClientInfoDetails></ClientInfoDetails>
+      <EditDialog>{current}</EditDialog>
     </>
   )
 }
