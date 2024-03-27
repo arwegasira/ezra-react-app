@@ -6,6 +6,7 @@ import { customFetch } from '../utils'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { closeEditDialog } from '../feature/EditDialog/editDialog'
+import { showAlert, removeAlert } from '../feature/ErrorAlert/ErrorAlert'
 const EditUserProfile = () => {
   const { client } = useLoaderData()
   const {
@@ -32,7 +33,7 @@ const EditUserProfile = () => {
 
     try {
       const response = await customFetch.patch(
-        `client/editclient/${clientId}`,
+        `client/editclients/${clientId}`,
         formData
       )
       //dispatch close dialog
@@ -40,10 +41,11 @@ const EditUserProfile = () => {
       //reload
       navigate(`/singleClient/${clientId}`)
     } catch (error) {
-      console.log(error)
-      //toast error
+      //dispatch show alert
       const msg = error?.response?.data?.msg || 'Something went wrong.'
-      toast.error(msg)
+      dispatch(showAlert({ msg }))
+      //remove alert after 5seconds
+      // dispatch(removeAlert())
     }
   }
   return (
