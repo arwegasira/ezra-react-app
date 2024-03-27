@@ -14,7 +14,9 @@ const editDialogSlice = createSlice({
       editDialog.showModal()
     },
     closeEditDialog: (state, action) => {
-      console.log(action.payload)
+      state.currentForm = null
+      const editDialog = document.querySelector('.edit-dialog')
+      editDialog.close()
     },
   },
 })

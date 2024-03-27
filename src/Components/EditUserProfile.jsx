@@ -1,8 +1,11 @@
 import { Form } from 'react-router-dom'
 import FormInput from './FormInput'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 import EditDialogTitle from './EditDialogTitle'
-
+import { customFetch } from '../utils'
+import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { closeEditDialog } from '../feature/EditDialog/editDialog'
 const EditUserProfile = () => {
   const { client } = useLoaderData()
   const {
@@ -18,11 +21,39 @@ const EditUserProfile = () => {
     city,
     state,
     country,
+    _id: clientId,
   } = client
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    let formData = new FormData(e.currentTarget)
+    formData = Object.fromEntries(formData)
+
+    try {
+      const response = await customFetch.patch(
+        `client/editclient/${clientId}`,
+        formData
+      )
+      //dispatch close dialog
+      dispatch(closeEditDialog())
+      //reload
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {
+      console.log(error)
+      //toast error
+      const msg = error?.response?.data?.msg || 'Something went wrong.'
+      toast.error(msg)
+    }
+  }
   return (
     <>
       <EditDialogTitle title='Edit User Profile'></EditDialogTitle>
-      <Form method='POST' className='mt-2'>
+      <Form
+        method='POST'
+        className='mt-2'
+        onSubmit={(e) => handleFormSubmit(e)}
+      >
         <div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3'>
           <FormInput
             label='ID/PC #'
@@ -110,7 +141,11 @@ const EditUserProfile = () => {
           ></FormInput>
         </div>
         <div className='mt-6 flex flex-col gap-3 md:flex-row md:justify-center'>
-          <button type='button' className='btn secondary-btns md:w-[30%]'>
+          <button
+            type='button'
+            className='btn secondary-btns md:w-[30%]'
+            onClick={() => dispatch(closeEditDialog())}
+          >
             Cancel
           </button>
           <button type='submit' className='btn primary-btns md:w-[30%]'>
