@@ -33,7 +33,7 @@ const EditUserProfile = () => {
 
     try {
       const response = await customFetch.patch(
-        `client/editclients/${clientId}`,
+        `client/editclient/${clientId}`,
         formData
       )
       //dispatch close dialog
