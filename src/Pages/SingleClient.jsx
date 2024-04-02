@@ -7,10 +7,11 @@ import {
   Tabs,
 } from '../Components'
 import { useSelector, useDispatch } from 'react-redux'
-import EditUserProfile from '../Components/EditUserProfile'
+import { AddAccommodation, EditUserProfile } from '../Components'
 
 const formDialogs = {
   editUserProfile: <EditUserProfile></EditUserProfile>,
+  addAccommodation: <AddAccommodation></AddAccommodation>,
 }
 export const loader = async ({ params }) => {
   const { id } = params

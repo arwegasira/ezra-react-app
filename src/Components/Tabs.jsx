@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import ActiveAccommodation from './ActiveAccommodation'
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('current')
   const handleActiveTab = (tabName) => {
@@ -10,7 +10,7 @@ const Tabs = () => {
     <section>
       <div
         role='tablist'
-        className='tabs tabs-bordered  mt-8 grid-cols-3 tabs-sm md:tabs-md lg:tabs-lg'
+        className='tabs tabs-bordered  mt-8 grid-cols-3 tabs-sm sm:tabs-md md:tabs-lg'
       >
         {/* CURRENT TAB */}
         <a
@@ -21,7 +21,7 @@ const Tabs = () => {
           Current
         </a>
         <div role='tabpanel' className='tab-content py-8 px-0'>
-          Current
+          <ActiveAccommodation></ActiveAccommodation>
         </div>
 
         {/* UNPAID TAB */}
