@@ -6,6 +6,7 @@ const FormInput = ({
   name,
   defaultValue,
   borderRadius,
+  disabled,
 }) => {
   return (
     <label className='form-control '>
@@ -18,6 +19,7 @@ const FormInput = ({
         name={name}
         defaultValue={defaultValue}
         className={`input input-bordered ${size} ${borderRadius}`}
+        disabled={disabled}
       />
     </label>
   )
