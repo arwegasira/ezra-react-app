@@ -3,6 +3,7 @@ import userSlice from './feature/user/userSlice'
 import clientSlice from './feature/clients/clientSlice'
 import editDialogSlice from './feature/EditDialog/editDialog'
 import errorAlertSlice from './feature/ErrorAlert/ErrorAlert'
+import roomSlice from './feature/Room/room'
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     clientsState: clientSlice,
     editDialogState: editDialogSlice,
     errorAlertState: errorAlertSlice,
+    roomState: roomSlice,
   },
 })
