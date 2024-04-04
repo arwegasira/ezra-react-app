@@ -17,7 +17,7 @@ const ActiveAccommodation = () => {
       ) : (
         <button
           type='button'
-          className='btn btn-sm primary-btns mt-4 outline-0'
+          className='btn btn-sm primary-btns mt-4 outline-0 focus:outline-0'
           onClick={() =>
             dispatch(openEditDialog({ currentForm: 'addAccommodation' }))
           }
