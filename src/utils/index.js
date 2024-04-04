@@ -12,8 +12,16 @@ export const fetchAvailableRoom = async () => {
   try {
     const response = await customFetch.get('/rooms/availableRooms')
     return response
-    return rooms
   } catch (error) {
     return error
+  }
+}
+
+export const fetchSelectedRoomPrice = async (roomName) => {
+  try {
+    const response = await customFetch.get(`/rooms/roomPrice/${roomName}`)
+    return response?.data?.price || null
+  } catch (error) {
+    return null
   }
 }

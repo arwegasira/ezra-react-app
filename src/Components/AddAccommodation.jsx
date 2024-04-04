@@ -2,7 +2,9 @@ import { Form } from 'react-router-dom'
 import FormInput from './FormInput'
 import FormSelect from './FormSelect'
 import EditDialogTitle from './EditDialogTitle'
+import { useSelector } from 'react-redux'
 const AddAccommodation = () => {
+  const { defaultRoomPrice } = useSelector((store) => store.roomState)
   return (
     <div>
       <EditDialogTitle title='Add Accommodation'></EditDialogTitle>
@@ -32,6 +34,7 @@ const AddAccommodation = () => {
             name='unitPrice'
             size='input-sm'
             disabled={true}
+            defaultValue={defaultRoomPrice}
           ></FormInput>
           <FormInput
             label='Override Price'

@@ -1,7 +1,9 @@
 import { useRef, useState, useEffect } from 'react'
-import { fetchAvailableRoom } from '../utils'
+import { fetchAvailableRoom, fetchSelectedRoomPrice } from '../utils'
 import { useDispatch } from 'react-redux'
 import { showAlert } from '../feature/ErrorAlert/ErrorAlert'
+import { setResetRoomPrice } from '../feature/Room/room'
+
 const FormSelect = ({ label, size, name, defaultValue, borderRadius }) => {
   const [options, setOptions] = useState([])
   const select = useRef(null)
@@ -22,6 +24,10 @@ const FormSelect = ({ label, size, name, defaultValue, borderRadius }) => {
       setOptions(rooms)
     }
   }
+  const handleChange = async (e) => {
+    const price = await fetchSelectedRoomPrice(e.target.value)
+    dispatch(setResetRoomPrice({ price }))
+  }
   useEffect(() => {
     handleFocus()
   }, [])
@@ -36,6 +42,7 @@ const FormSelect = ({ label, size, name, defaultValue, borderRadius }) => {
         name={name}
         defaultValue={defaultValue}
         onFocus={async () => handleFocus()}
+        onChange={(e) => handleChange(e)}
       >
         {options.map((option) => {
           return (
