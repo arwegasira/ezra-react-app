@@ -2,9 +2,11 @@ import { Form } from 'react-router-dom'
 import FormInput from './FormInput'
 import FormSelect from './FormSelect'
 import EditDialogTitle from './EditDialogTitle'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { closeEditDialog } from '../feature/EditDialog/editDialog'
 const AddAccommodation = () => {
   const { defaultRoomPrice } = useSelector((store) => store.roomState)
+  const dispatch = useDispatch()
   return (
     <div>
       <EditDialogTitle title='Add Accommodation'></EditDialogTitle>
@@ -44,7 +46,11 @@ const AddAccommodation = () => {
           ></FormInput>
         </div>
         <div className='mt-8 flex flex-col gap-3 md:flex-row md:justify-center'>
-          <button type='button' className='btn secondary-btns md:w-[30%]'>
+          <button
+            type='button'
+            className='btn secondary-btns md:w-[30%]'
+            onClick={() => dispatch(closeEditDialog())}
+          >
             Cancel
           </button>
           <button type='submit' className='btn primary-btns md:w-[30%]'>
