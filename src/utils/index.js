@@ -16,6 +16,4 @@ export const fetchAvailableRoom = async () => {
   } catch (error) {
     return error
   }
-
-  return response
 }
