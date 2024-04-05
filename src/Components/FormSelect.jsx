@@ -12,7 +12,8 @@ const FormSelect = ({ label, size, name, defaultValue, borderRadius }) => {
     const response = await fetchAvailableRoom()
     if (response.status !== 200) {
       //show error alert
-      const msg = response?.response?.data?.msg || 'Something went wrong'
+      console.log(response)
+      const msg = response?.response?.data || 'Something went wrong'
       dispatch(showAlert({ msg }))
       //remove focus on select
       select.current.blur()
