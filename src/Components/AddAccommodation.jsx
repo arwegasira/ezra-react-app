@@ -4,13 +4,39 @@ import FormSelect from './FormSelect'
 import EditDialogTitle from './EditDialogTitle'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeEditDialog } from '../feature/EditDialog/editDialog'
+import { showAlert } from '../feature/ErrorAlert/ErrorAlert'
+import { customFetch, dateFormat } from '../utils'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 const AddAccommodation = () => {
+  const { client } = useLoaderData()
+  const { _id: clientId } = client
   const { defaultRoomPrice } = useSelector((store) => store.roomState)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    let formData = new FormData(e.currentTarget)
+    formData = Object.fromEntries(formData)
+    formData.startDate = dateFormat(formData.startDate)
+    formData.endDate = dateFormat(formData.endDate)
+    formData.clientId = clientId
+
+    try {
+      const response = await customFetch.post(
+        '/client/addaccommodation',
+        formData
+      )
+      dispatch(closeEditDialog())
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {
+      const msg = error?.response?.data || 'Something went wrong'
+      dispatch(showAlert({ msg }))
+    }
+  }
   return (
     <div>
       <EditDialogTitle title='Add Accommodation'></EditDialogTitle>
-      <Form>
+      <Form method='POST' onSubmit={(e) => handleSubmit(e)}>
         <div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3'>
           <FormInput
             label='Start Date'
