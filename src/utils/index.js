@@ -19,7 +19,17 @@ export const dateFormatShortMonth = (date) => {
   )
   return `${parts[0].value} ${parts[2].value}th ${parts[4].value}`
 }
-
+export const dateFormatYearMonthDay = (date) => {
+  const options = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }
+  const parts = new Intl.DateTimeFormat('en-US', options).formatToParts(
+    new Date(date)
+  )
+  return `${parts[4].value}-${parts[0].value}-${parts[2].value}`
+}
 export const fetchAvailableRoom = async () => {
   try {
     const response = await customFetch.get('/rooms/availableRooms')
