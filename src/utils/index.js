@@ -8,6 +8,18 @@ export const dateFormat = (date) => {
   return new Intl.DateTimeFormat('en-GB').format(new Date(date))
 }
 
+export const dateFormatShortMonth = (date) => {
+  const options = {
+    month: 'short', // Abbreviated month name (e.g., "Apr")
+    day: 'numeric', // Numeric day of the month (e.g., 6)
+    year: '2-digit', // Two-digit year (e.g., 24)
+  }
+  const parts = new Intl.DateTimeFormat('en-US', options).formatToParts(
+    new Date(date)
+  )
+  return `${parts[0].value} ${parts[2].value}th ${parts[4].value}`
+}
+
 export const fetchAvailableRoom = async () => {
   try {
     const response = await customFetch.get('/rooms/availableRooms')
