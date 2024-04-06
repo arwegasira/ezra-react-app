@@ -25,7 +25,7 @@ const Accommodation = () => {
 
       <li className='flex justify-between pb-4 border-b lg:border-0 lg:flex-col'>
         <span className='font-semibold'>Night(s)</span>{' '}
-        <span>{totalCost / unitPrice}</span>
+        <span className='text-center'>{totalCost / unitPrice}</span>
       </li>
 
       <li className='flex justify-between pb-4 border-b lg:border-0 lg:flex-col'>
@@ -37,8 +37,8 @@ const Accommodation = () => {
       </li>
 
       <li className='flex justify-between pb-4 border-b lg:border-0 lg:flex-col'>
-        <span className='font-semibold'>Unit Price</span>{' '}
-        <span>{unitPrice}</span>
+        <span className='font-semibold'>Unit Price</span>
+        <span className='text-center'>{unitPrice}</span>
       </li>
 
       <li className='flex justify-between pb-4 border-b lg:border-0 lg:flex-col'>
