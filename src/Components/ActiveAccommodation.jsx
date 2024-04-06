@@ -3,6 +3,7 @@ import SectionTitle from './SectionTitle'
 import { openEditDialog } from '../feature/EditDialog/editDialog'
 import { useDispatch } from 'react-redux'
 import { setResetRoomPrice } from '../feature/Room/room'
+import Accommodation from './Accommodation'
 const ActiveAccommodation = () => {
   const { client } = useLoaderData()
   const { activeAccommodation } = client
@@ -13,12 +14,14 @@ const ActiveAccommodation = () => {
   }
   return (
     <article>
-      <SectionTitle
-        title='Active Accommodation'
-        textSize='text-2xl'
-      ></SectionTitle>
       {activeAccommodation.length ? (
-        ''
+        <div>
+          <SectionTitle
+            title='Active Accommodation'
+            textSize='text-2xl'
+          ></SectionTitle>
+          <Accommodation></Accommodation>
+        </div>
       ) : (
         <button
           type='button'
