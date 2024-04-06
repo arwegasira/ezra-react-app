@@ -12,7 +12,6 @@ const FormSelect = ({ label, size, name, defaultValue, borderRadius }) => {
     const response = await fetchAvailableRoom()
     if (response.status !== 200) {
       //show error alert
-      console.log(response)
       const msg = response?.response?.data || 'Something went wrong'
       dispatch(showAlert({ msg }))
       //remove focus on select
@@ -21,7 +20,7 @@ const FormSelect = ({ label, size, name, defaultValue, borderRadius }) => {
       //update state
       let rooms = response?.data?.rooms
       rooms = rooms.map((room) => room.name)
-      rooms.unshift(' ')
+      rooms.unshift(defaultValue ? defaultValue : ' ')
       setOptions(rooms)
     }
   }
