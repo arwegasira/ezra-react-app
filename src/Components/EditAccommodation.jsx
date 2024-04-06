@@ -4,11 +4,12 @@ import EditDialogTitle from './EditDialogTitle'
 import { useDispatch } from 'react-redux'
 import { Form } from 'react-router-dom'
 import { closeEditDialog } from '../feature/EditDialog/editDialog'
-import { useLoaderData } from 'react-router-dom'
-import { dateFormat, dateFormatYearMonthDay } from '../utils'
+import { useLoaderData, useNavigate } from 'react-router-dom'
+import { customFetch, dateFormat, dateFormatYearMonthDay } from '../utils'
+import { showAlert } from '../feature/ErrorAlert/ErrorAlert'
 const EditAccommodation = () => {
   const {
-    client: { activeAccommodation },
+    client: { activeAccommodation, _id: clientId },
   } = useLoaderData()
   const {
     startDate,
@@ -18,8 +19,25 @@ const EditAccommodation = () => {
   } = activeAccommodation[0]
 
   const dispatch = useDispatch()
-  const handleSubmit = (e) => {
+  const navigate = useNavigate()
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    let formData = new FormData(e.currentTarget)
+    formData = Object.fromEntries(formData)
+    formData.startDate = dateFormat(formData.startDate)
+    formData.endDate = dateFormat(formData.endDate)
+    formData.clientId = clientId
+    try {
+      const response = await customFetch.post(
+        '/client/editaccommodation',
+        formData
+      )
+      dispatch(closeEditDialog())
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {
+      const msg = error?.response?.data || 'Something went wrong'
+      dispatch(showAlert({ msg }))
+    }
   }
   return (
     <div>
