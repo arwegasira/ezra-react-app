@@ -20,6 +20,12 @@ const Accommodation = () => {
       navigate(`/singleClient/${clientId}`)
     } catch (error) {}
   }
+  const checkoutClient = async () => {
+    try {
+      await customFetch.post(`/client/checkout/${clientId}`)
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {}
+  }
   return (
     <ul className='mt-4 flex flex-col gap-y-4 lg:flex-row lg:justify-between lg:shadow-md lg:rounded-lg lg:p-4'>
       <li className='flex justify-between pb-4 border-b lg:border-0 lg:flex-col'>
@@ -87,6 +93,7 @@ const Accommodation = () => {
           <button
             type='button'
             className='btn btn-sm primary-btns outline-0 focus:outline-0 '
+            onClick={checkoutClient}
           >
             check Out
           </button>
