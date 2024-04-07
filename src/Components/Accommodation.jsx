@@ -1,5 +1,5 @@
-import { useLoaderData } from 'react-router-dom'
-import { dateFormat, dateFormatShortMonth } from '../utils'
+import { useLoaderData, useNavigate } from 'react-router-dom'
+import { customFetch, dateFormat, dateFormatShortMonth } from '../utils'
 import { useDispatch } from 'react-redux'
 import { openEditDialog } from '../feature/EditDialog/editDialog'
 
@@ -8,23 +8,27 @@ import { useState } from 'react'
 const Accommodation = () => {
   const [checkout, setCheckout] = useState(false)
   const { client } = useLoaderData()
-  let { activeAccommodation } = client
+  const { activeAccommodation, _id: clientId } = client
   const { startDate, endDate, roomDetails, unitPrice, totalCost } =
     activeAccommodation[0]
   const { roomType, name: roomName } = roomDetails
   const dispatch = useDispatch()
-  // const handleOpenDialog = (formName) => {
-  //   dispatch(openEditDialog({ currentForm: formName }))
-  // }
+  const navigate = useNavigate()
+  const availRoom = async () => {
+    try {
+      const response = await customFetch.patch(`/client/availRoom/${clientId}`)
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {}
+  }
   return (
     <ul className='mt-4 flex flex-col gap-y-4 lg:flex-row lg:justify-between lg:shadow-md lg:rounded-lg lg:p-4'>
       <li className='flex justify-between pb-4 border-b lg:border-0 lg:flex-col'>
-        <span className='font-semibold'>Start Date</span>{' '}
+        <span className='font-semibold'>Start Date</span>
         <span>{dateFormatShortMonth(startDate)}</span>
       </li>
 
       <li className='flex justify-between pb-4 border-b lg:border-0 lg:flex-col'>
-        <span className='font-semibold'>End Date</span>{' '}
+        <span className='font-semibold'>End Date</span>
         <span>{dateFormatShortMonth(endDate)}</span>
       </li>
 
@@ -75,6 +79,7 @@ const Accommodation = () => {
         <button
           type='button'
           className='btn btn-sm primary-btns outline-0 focus:outline-0 '
+          onClick={availRoom}
         >
           Avail Room
         </button>
