@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ActiveAccommodation from './ActiveAccommodation'
+import ActiveServices from './ActiveServices'
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('current')
   const handleActiveTab = (tabName) => {
@@ -22,6 +23,7 @@ const Tabs = () => {
         </a>
         <div role='tabpanel' className='tab-content py-8 px-0'>
           <ActiveAccommodation></ActiveAccommodation>
+          <ActiveServices></ActiveServices>
         </div>
 
         {/* UNPAID TAB */}
