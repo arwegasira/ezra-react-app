@@ -12,7 +12,7 @@ const Service = ({ serviceId, service, total }) => {
         <span>{total}</span>
       </li>
       <li className='self-center justify-self-end'>
-        <button type='button' className='text-2xl'>
+        <button type='button' className='text-2xl outline-0 focus:outline-0'>
           <FaRegEdit></FaRegEdit>
         </button>
       </li>

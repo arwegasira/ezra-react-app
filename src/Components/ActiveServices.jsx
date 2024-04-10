@@ -17,7 +17,7 @@ const ActiveServices = () => {
         ></SectionTitle>
         <button
           type='button'
-          className='btn primary-btns btn-sm'
+          className='btn primary-btns btn-sm outline-0 focus:outline-0'
           onClick={() =>
             dispatch(openEditDialog({ currentForm: 'addService' }))
           }
