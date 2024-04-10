@@ -1,11 +1,13 @@
 import SectionTitle from './SectionTitle'
 import { useLoaderData } from 'react-router-dom'
 import Service from './Service'
+import { useDispatch } from 'react-redux'
+import { openEditDialog } from '../feature/EditDialog/editDialog'
 const ActiveServices = () => {
   const {
     client: { activeServices },
   } = useLoaderData()
-
+  const dispatch = useDispatch()
   return (
     <article className='mt-10'>
       <div className='pb-4 border-b-2 flex justify-between'>
@@ -13,7 +15,13 @@ const ActiveServices = () => {
           title='Active Services'
           textSize='text-2xl'
         ></SectionTitle>
-        <button type='button' className='btn primary-btns btn-sm'>
+        <button
+          type='button'
+          className='btn primary-btns btn-sm'
+          onClick={() =>
+            dispatch(openEditDialog({ currentForm: 'addService' }))
+          }
+        >
           New Service
         </button>
       </div>

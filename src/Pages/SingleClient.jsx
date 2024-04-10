@@ -11,12 +11,14 @@ import {
   AddAccommodation,
   EditUserProfile,
   EditAccommodation,
+  AddService,
 } from '../Components'
 
 const formDialogs = {
   editUserProfile: <EditUserProfile></EditUserProfile>,
   addAccommodation: <AddAccommodation></AddAccommodation>,
   editAccommodation: <EditAccommodation></EditAccommodation>,
+  addService: <AddService></AddService>,
 }
 export const loader = async ({ params }) => {
   const { id } = params
