@@ -12,6 +12,7 @@ import {
   EditUserProfile,
   EditAccommodation,
   AddService,
+  EditService,
 } from '../Components'
 
 const formDialogs = {
@@ -19,6 +20,7 @@ const formDialogs = {
   addAccommodation: <AddAccommodation></AddAccommodation>,
   editAccommodation: <EditAccommodation></EditAccommodation>,
   addService: <AddService></AddService>,
+  editService: <EditService></EditService>,
 }
 export const loader = async ({ params }) => {
   const { id } = params
