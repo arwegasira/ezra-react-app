@@ -4,15 +4,16 @@ import Service from './Service'
 import { useDispatch } from 'react-redux'
 import { openEditDialog } from '../feature/EditDialog/editDialog'
 const ActiveServices = () => {
-  const {
+  let {
     client: { activeServices },
   } = useLoaderData()
+  activeServices = activeServices || []
   const dispatch = useDispatch()
   return (
     <article className='mt-10'>
       <div className='pb-4 border-b-2 flex justify-between'>
         <SectionTitle
-          title='Active Services'
+          title={`Active Services ( ${activeServices.length} )`}
           textSize='text-2xl'
         ></SectionTitle>
         <button
@@ -25,18 +26,17 @@ const ActiveServices = () => {
           New Service
         </button>
       </div>
-      {activeServices.length &&
-        activeServices.map((currentService) => {
-          const { serviceId, service, total } = currentService
-          return (
-            <Service
-              key={serviceId}
-              service={service}
-              total={total}
-              serviceId={serviceId}
-            ></Service>
-          )
-        })}
+      {activeServices.map((currentService) => {
+        const { serviceId, service, total } = currentService
+        return (
+          <Service
+            key={serviceId}
+            service={service}
+            total={total}
+            serviceId={serviceId}
+          ></Service>
+        )
+      })}
     </article>
   )
 }
