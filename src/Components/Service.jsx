@@ -1,10 +1,13 @@
 import { FaRegEdit } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { openEditDialog } from '../feature/EditDialog/editDialog'
+import { setCurrentService } from '../feature/Services/editServiceSlice'
 const Service = ({ serviceId, service, total }) => {
   const dispatch = useDispatch()
   const handleEdit = ({ service, serviceId, total }) => {
     //update edit service global state
+    dispatch(setCurrentService({ service, serviceId, amount: total }))
+    //open edit dialog
     dispatch(openEditDialog({ currentForm: 'editService' }))
   }
   return (

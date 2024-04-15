@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Form, useLoaderData, useNavigate } from 'react-router-dom'
 import EditDialogTitle from './EditDialogTitle'
 import { closeEditDialog } from '../feature/EditDialog/editDialog'
@@ -10,24 +10,29 @@ const EditService = () => {
   const {
     client: { _id: clientId },
   } = useLoaderData()
+  const { serviceId, service, amount } = useSelector(
+    (store) => store.editServiceState
+  )
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
     let formData = new FormData(e.currentTarget)
     formData = Object.fromEntries(formData)
-    // try {
-    //   const response = await customFetch.post(
-    //     `/client/addservice/${clientId}`,
-    //     formData
-    //   )
-    //   dispatch(closeEditDialog())
-    //   navigate(`/singleClient/${clientId}`)
-    // } catch (error) {
-    //   const msg = error?.response?.data.msg || 'Something went wrong'
-    //   console.error(msg)
-    //   dispatch(showAlert({ msg: msg }))
-    // }
+
+    try {
+      await customFetch.post(
+        `/client/editservice?client=${clientId}&service=${serviceId}`,
+        formData
+      )
+      dispatch(closeEditDialog())
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {
+      const msg = error?.response?.data?.msg || 'Something went wrong'
+      console.error(msg)
+      dispatch(showAlert({ msg: msg }))
+    }
   }
   return (
     <div>
@@ -36,15 +41,17 @@ const EditService = () => {
         <div className='grid grid-cols-1 gap-2 md:grid-cols-2 '>
           <FormSelectMultiPurpose
             label='Service'
-            name='service'
+            name='serviceName'
             size='select-sm'
-            options={[' ', 'Food and Beverages', 'Laundry']}
+            options={['Food and Beverages', 'Laundry']}
+            defaultValue={service}
           ></FormSelectMultiPurpose>
           <FormInput
             label='Amount'
             type='number'
             name='price'
             size='input-sm'
+            defaultValue={amount}
           ></FormInput>
         </div>
         <div className='mt-8 flex flex-col gap-3 md:flex-row md:justify-center'>
