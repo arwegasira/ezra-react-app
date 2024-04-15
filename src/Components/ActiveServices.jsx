@@ -29,7 +29,12 @@ const ActiveServices = () => {
         activeServices.map((currentService) => {
           const { serviceId, service, total } = currentService
           return (
-            <Service key={serviceId} service={service} total={total}></Service>
+            <Service
+              key={serviceId}
+              service={service}
+              total={total}
+              serviceId={serviceId}
+            ></Service>
           )
         })}
     </article>
