@@ -11,7 +11,7 @@ const Tabs = () => {
     <section>
       <div
         role='tablist'
-        className='tabs tabs-bordered  mt-8 grid-cols-3 tabs-sm sm:tabs-md md:tabs-lg'
+        className='tabs tabs-bordered  mt-8 grid-cols-3 tabs-md md:tabs-lg'
       >
         {/* CURRENT TAB */}
         <a
