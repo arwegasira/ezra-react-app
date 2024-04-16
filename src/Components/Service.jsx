@@ -33,6 +33,14 @@ const Service = ({ serviceId, service, total }) => {
       navigate(`/singleClient/${clientId}`)
     } catch (error) {}
   }
+  const markServiceUnpaid = async ({ serviceId }) => {
+    try {
+      await customFetch.patch(
+        `/client/markserviceunpaid?client=${clientId}&service=${serviceId}`
+      )
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {}
+  }
   return (
     <ul className='mt-4 grid grid-cols-2 lg:grid-cols-3 border-b pb-4'>
       <li className='flex flex-col'>
@@ -47,6 +55,7 @@ const Service = ({ serviceId, service, total }) => {
         <button
           type='button'
           className='btn secondary-btns btn-sm outline-0 focus:outline-0'
+          onClick={() => markServiceUnpaid({ serviceId })}
         >
           Mark Unpaid
         </button>
