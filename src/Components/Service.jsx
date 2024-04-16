@@ -25,6 +25,14 @@ const Service = ({ serviceId, service, total }) => {
       navigate(`/singleClient/${clientId}`)
     } catch (error) {}
   }
+  const payService = async ({ serviceId }) => {
+    try {
+      await customFetch.post(
+        `/client/payservice?client=${clientId}&service=${serviceId}`
+      )
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {}
+  }
   return (
     <ul className='mt-4 grid grid-cols-2 lg:grid-cols-3 border-b pb-4'>
       <li className='flex flex-col'>
@@ -45,6 +53,7 @@ const Service = ({ serviceId, service, total }) => {
         <button
           type='button'
           className='btn primary-btns btn-sm outline-0 focus:outline-0'
+          onClick={() => payService({ serviceId })}
         >
           Paid
         </button>
