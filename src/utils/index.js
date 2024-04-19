@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const customFetch = axios.create({
-  baseURL: 'https://ezra-back-end.onrender.com/api/v1',
+  baseURL: 'localhost:80/api/v1',
 })
 
 export const dateFormat = (date) => {
