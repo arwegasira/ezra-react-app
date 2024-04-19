@@ -2,7 +2,7 @@ import { useLoaderData } from 'react-router-dom'
 import UnpaidAccommodationSingle from './UnpaidAccommodationSingle'
 const UnpaidAccommodation = () => {
   let {
-    client: { unpaidAccommodation },
+    client: { unpaidAccommodation, _id: clientId },
   } = useLoaderData()
   unpaidAccommodation = unpaidAccommodation || []
 
@@ -27,6 +27,7 @@ const UnpaidAccommodation = () => {
             roomName={roomName}
             roomType={roomType}
             id={id}
+            clientId={clientId}
           ></UnpaidAccommodationSingle>
         )
       })}
