@@ -1,7 +1,11 @@
 import axios from 'axios'
 
+const environment = import.meta.env.VITE_ENVIRONMENT
 export const customFetch = axios.create({
-  baseURL: 'http://localhost:80/api/v1',
+  baseURL:
+    environment === 'Dev'
+      ? 'http://localhost:80/api/v1'
+      : 'https://ezra-back-end.onrender.com/api/v1',
 })
 
 export const dateFormat = (date) => {
