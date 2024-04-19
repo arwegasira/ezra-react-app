@@ -59,7 +59,7 @@ const UnpaidAccommodationSingle = ({
           className='btn btn-sm primary-btns outline-0 focus:outline-0 '
           onClick={() => checkoutClient(id)}
         >
-          check Out
+          Paid
         </button>
       </li>
     </ul>
