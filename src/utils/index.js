@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const customFetch = axios.create({
-  baseURL: 'localhost:80/api/v1',
+  baseURL: 'http://localhost:80/api/v1',
 })
 
 export const dateFormat = (date) => {
