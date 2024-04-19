@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ActiveAccommodation from './ActiveAccommodation'
 import ActiveServices from './ActiveServices'
+import UnpaidAccommodation from './UnpaidAccommodation'
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('current')
   const handleActiveTab = (tabName) => {
@@ -35,7 +36,7 @@ const Tabs = () => {
           Unpaid
         </a>
         <div role='tabpanel' className='tab-content py-8 px-0'>
-          Unpaid
+          <UnpaidAccommodation></UnpaidAccommodation>
         </div>
 
         {/* History Tab */}
