@@ -1,4 +1,5 @@
-import { dateFormatShortMonth } from '../utils'
+import { customFetch, dateFormatShortMonth } from '../utils'
+import { useNavigate } from 'react-router-dom'
 const UnpaidAccommodationSingle = ({
   startDate,
   endDate,
@@ -7,9 +8,16 @@ const UnpaidAccommodationSingle = ({
   unitPrice,
   totalCost,
   id,
+  clientId,
 }) => {
-  const checkoutClient = () => {
-    console.log(id)
+  const navigate = useNavigate()
+  const checkoutClient = async (id) => {
+    try {
+      await customFetch.post(
+        `/client/payaccommodation?clientId=${clientId}&accommodationId=${id}`
+      )
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {}
   }
   return (
     <ul className='mt-4 flex flex-col gap-y-4 lg:flex-row lg:justify-between lg:shadow-md lg:rounded-lg lg:p-4'>
