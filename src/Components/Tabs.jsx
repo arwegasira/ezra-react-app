@@ -49,9 +49,7 @@ const Tabs = () => {
         >
           History
         </a>
-        <div role='tabpanel' className='tab-content py-8 px-0'>
-          History
-        </div>
+        <div role='tabpanel' className='tab-content py-8 px-0'></div>
       </div>
     </section>
   )
