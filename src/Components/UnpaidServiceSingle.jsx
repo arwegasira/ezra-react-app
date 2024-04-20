@@ -1,6 +1,14 @@
+import { useNavigate } from 'react-router-dom'
+import { customFetch } from '../utils'
 const UnpaidServiceSingle = ({ service, total, serviceId, clientId }) => {
-  const payService = (serviceId) => {
-    console.log(serviceId)
+  const navigate = useNavigate()
+  const payService = async (serviceId) => {
+    try {
+      await customFetch.post(
+        `/client/payunpaidservice?client=${clientId}&service=${serviceId}`
+      )
+      navigate(`/singleClient/${clientId}`)
+    } catch (error) {}
   }
   return (
     <ul className='mt-4 grid grid-cols-2 lg:grid-cols-3 pb-4 border-b lg:border-0 lg:shadow lg:rounded-lg lg:p-4'>
