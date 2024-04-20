@@ -2,6 +2,7 @@ import { ClientFilter, PaginationContainer } from '../Components'
 import { useSelector } from 'react-redux'
 import { ClientsContainer } from '../Components'
 import { customFetch } from '../utils'
+import { useNavigate } from 'react-router-dom'
 
 const clientsQuery = (params, url) => {
   const { idNumber, phoneNumber, email, firstName, lastName, page } = params
@@ -44,10 +45,21 @@ export const loader =
     }
   }
 const Home = () => {
+  const navigate = useNavigate()
   const { clients } = useSelector((store) => store.clientsState)
 
   return (
     <>
+      <div className='mb-8 flex justify-center sm:justify-end'>
+        <button
+          type='button'
+          className='btn primary-btns btn-sm w-[90%] max-w-72'
+          onClick={() => navigate('/registerClient')}
+        >
+          New Client
+        </button>
+      </div>
+
       <ClientFilter></ClientFilter>
       <ClientsContainer></ClientsContainer>
       <PaginationContainer></PaginationContainer>
