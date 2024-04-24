@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import * as Yup from 'yup'
 const environment = import.meta.env.VITE_ENVIRONMENT
 export const customFetch = axios.create({
   baseURL:
@@ -51,3 +51,9 @@ export const fetchSelectedRoomPrice = async (roomName) => {
     return null
   }
 }
+
+export const regFormValidation = Yup.object({
+  firstName: Yup.string().required('Required'),
+  lastName: Yup.string().required('Required'),
+  gender: Yup.string().oneOf(['male', 'female']),
+})
