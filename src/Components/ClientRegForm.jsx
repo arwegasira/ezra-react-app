@@ -30,7 +30,7 @@ const ClientRegForm = () => {
       {(isSubmitting, handleSubmit) => (
         <form
           onSubmit={handleSubmit}
-          className='w-[90%] max-w-[70rem] px-4 py-8 bg-gray-100 rounded-md shadow-sm'
+          className='w-[90%] max-w-[70rem] px-6 py-8 bg-gray-100 rounded-md shadow-sm'
         >
           <div className='grid gap-2 md:grid-cols-2 lg:grid-cols-3'>
             <FormIkInput
@@ -132,8 +132,11 @@ const ClientRegForm = () => {
               size='input-md'
             ></FormIkInput>
           </div>
-          <div className='flex justify-center mt-6'>
-            <button type='submit' className='btn primary-btns w-[50%]'>
+          <div className='lg:flex lg:justify-center mt-6'>
+            <button
+              type='submit'
+              className='btn primary-btns w-full lg:w-[50%]'
+            >
               Submit
             </button>
           </div>
