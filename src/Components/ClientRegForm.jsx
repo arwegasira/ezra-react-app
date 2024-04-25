@@ -1,9 +1,17 @@
-import { Formik } from 'formik'
+import { Formik, Form } from 'formik'
 import FormIkInput from '../Components/FormIk/FormikInput'
-import { regFormValidation } from '../utils'
+import { customFetch, regFormValidation } from '../utils'
 import FormIkSelect from './FormIk/FormIkSelect'
+import { toast } from 'react-toastify'
 const onSubmit = async (values, actions) => {
-  console.log(values)
+  try {
+    const response = await customFetch.post('/client/addclient', values)
+    toast.success('Client added successfully!')
+    actions.resetForm()
+  } catch (error) {
+    const msg = error?.response?.data || 'Something went wrong'
+    toast.error(msg)
+  }
 }
 const ClientRegForm = () => {
   return (
@@ -28,10 +36,7 @@ const ClientRegForm = () => {
       onSubmit={onSubmit}
     >
       {(isSubmitting, handleSubmit) => (
-        <form
-          onSubmit={handleSubmit}
-          className='w-[90%] max-w-[70rem] px-6 py-8 bg-gray-100 rounded-md shadow-sm'
-        >
+        <Form className='w-[90%] max-w-[70rem] px-6 py-8 bg-gray-100 rounded-md shadow-sm'>
           <div className='grid gap-2 md:grid-cols-2 lg:grid-cols-3'>
             <FormIkInput
               label='First Name'
@@ -132,15 +137,15 @@ const ClientRegForm = () => {
               size='input-md'
             ></FormIkInput>
           </div>
-          <div className='lg:flex lg:justify-center mt-6'>
+          <div className='lg:flex lg:justify-center mt-8'>
             <button
               type='submit'
-              className='btn primary-btns w-full lg:w-[50%]'
+              className='btn primary-btns w-full lg:w-[50%] outline-0 focus:outline-0'
             >
               Submit
             </button>
           </div>
-        </form>
+        </Form>
       )}
     </Formik>
   )
