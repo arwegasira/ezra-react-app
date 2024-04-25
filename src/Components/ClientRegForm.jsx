@@ -13,6 +13,7 @@ const onSubmit = async (values, actions) => {
     toast.error(msg)
   }
 }
+
 const ClientRegForm = () => {
   return (
     <Formik
@@ -35,7 +36,7 @@ const ClientRegForm = () => {
       validationSchema={regFormValidation}
       onSubmit={onSubmit}
     >
-      {(isSubmitting, handleSubmit) => (
+      {({ isSubmitting }) => (
         <Form className='w-[90%] max-w-[70rem] px-6 py-8 bg-gray-100 rounded-md shadow-sm'>
           <div className='grid gap-2 md:grid-cols-2 lg:grid-cols-3'>
             <FormIkInput
@@ -141,8 +142,9 @@ const ClientRegForm = () => {
             <button
               type='submit'
               className='btn primary-btns w-full lg:w-[50%] outline-0 focus:outline-0'
+              disabled={isSubmitting}
             >
-              Submit
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </Form>
