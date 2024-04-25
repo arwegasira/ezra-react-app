@@ -56,4 +56,8 @@ export const regFormValidation = Yup.object({
   firstName: Yup.string().required('Required'),
   lastName: Yup.string().required('Required'),
   gender: Yup.string().oneOf(['male', 'female']),
+  phoneNumber: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  idNumber: Yup.string().required('Required'),
+  nationality: Yup.string().required('Required'),
 })
