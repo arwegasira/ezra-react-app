@@ -61,3 +61,14 @@ export const regFormValidation = Yup.object({
   idNumber: Yup.string().required('Required'),
   nationality: Yup.string().required('Required'),
 })
+const passwordRule =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/
+export const verifyAccountValidation = Yup.object({
+  newPassword: Yup.string().required('Required').matches(passwordRule, {
+    message:
+      'Password must be at least 8 char long, contains at least one uppercase, at least one lowercase, and at least one digit',
+  }),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('newPassword'), null], 'Password must match')
+    .required('Required'),
+})
