@@ -29,7 +29,7 @@ const Login = () => {
     <section className='align-element h-[100svh] px-1 mt-12 sm:grid place-items-center'>
       <Form
         method='POST'
-        className='flex flex-col gap-4 pt-4 bg-gray-50 p-4 card rounded-md shadow-md px-1 sm:w-[25rem] px-4'
+        className='flex flex-col gap-4 bg-gray-50 p-4 card rounded-md shadow-md sm:w-[25rem] px-4'
       >
         <h4 className='text-center font-medium text-2xl sm:text-3xl tracking-wide'>
           Login
