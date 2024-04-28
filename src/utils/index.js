@@ -61,8 +61,7 @@ export const regFormValidation = Yup.object({
   idNumber: Yup.string().required('Required'),
   nationality: Yup.string().required('Required'),
 })
-const passwordRule =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/
+const passwordRule = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
 export const verifyAccountValidation = Yup.object({
   newPassword: Yup.string().required('Required').matches(passwordRule, {
     message:
