@@ -49,7 +49,7 @@ const Login = () => {
           type='password'
           name='password'
           borderRadius='rounded-md'
-          defaultValue='plzletmein'
+          defaultValue='@jesus#1.CH'
         ></FormInput>
 
         <div className='mb-8'>
