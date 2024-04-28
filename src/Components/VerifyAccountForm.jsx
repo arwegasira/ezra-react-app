@@ -1,9 +1,24 @@
 import { Formik, Form } from 'formik'
 import FormIkInput from './FormIk/FormikInput'
-import { verifyAccountValidation } from '../utils'
+import { customFetch, verifyAccountValidation } from '../utils'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { toast } from 'react-toastify'
 const VerifyAccountForm = () => {
-  const onSubmit = (values, actions) => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const onSubmit = async (values, actions) => {
+    const search = new URLSearchParams(location.search)
+    values.email = search.get('user')
+    values.verficationToken = search.get('token')
     console.log(values)
+    try {
+      await customFetch.post('auth/verify-Account', values)
+      toast.success('Successfully verified...')
+      navigate('/login')
+    } catch (error) {
+      const msg = error?.response?.data || 'Something went wrong'
+      toast.error(msg)
+    }
   }
   return (
     <Formik
