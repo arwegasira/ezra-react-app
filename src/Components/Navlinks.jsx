@@ -3,6 +3,8 @@ import { HiOutlineUserGroup } from 'react-icons/hi'
 import { GiSpookyHouse } from 'react-icons/gi'
 import { IoSettingsSharp } from 'react-icons/io5'
 import { FaServicestack } from 'react-icons/fa'
+import { FaUsers } from 'react-icons/fa6'
+import { HiMiniUsers } from 'react-icons/hi2'
 import { NavLink } from 'react-router-dom'
 const links = [
   {
@@ -17,24 +19,30 @@ const links = [
     icon: <GiSpookyHouse></GiSpookyHouse>,
     text: 'Rooms',
   },
-  {
-    id: 3,
-    url: 'clients',
-    icon: <HiOutlineUserGroup></HiOutlineUserGroup>,
-    text: 'Clients',
-  },
-  {
-    id: 4,
-    url: 'services',
-    icon: <FaServicestack></FaServicestack>,
-    text: 'Services',
-  },
+  // {
+  //   id: 3,
+  //   url: 'clients',
+  //   icon: <HiOutlineUserGroup></HiOutlineUserGroup>,
+  //   text: 'Clients',
+  // },
+  // {
+  //   id: 4,
+  //   url: 'services',
+  //   icon: <FaServicestack></FaServicestack>,
+  //   text: 'Services',
+  // },
   {
     id: 5,
-    url: 'settings',
-    icon: <IoSettingsSharp></IoSettingsSharp>,
-    text: 'Settings',
+    url: 'users',
+    icon: <HiMiniUsers></HiMiniUsers>,
+    text: 'users',
   },
+  // {
+  //   id: 6,
+  //   url: 'settings',
+  //   icon: <IoSettingsSharp></IoSettingsSharp>,
+  //   text: 'Settings',
+  // },
 ]
 const Navlinks = ({ toggleNav }) => {
   return (
