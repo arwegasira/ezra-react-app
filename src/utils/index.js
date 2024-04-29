@@ -55,7 +55,7 @@ export const fetchSelectedRoomPrice = async (roomName) => {
 export const regFormValidation = Yup.object({
   firstName: Yup.string().required('Required'),
   lastName: Yup.string().required('Required'),
-  gender: Yup.string().oneOf(['male', 'female']),
+  gender: Yup.string().oneOf(['Male', 'Female']),
   phoneNumber: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
   idNumber: Yup.string().required('Required'),
