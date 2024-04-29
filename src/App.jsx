@@ -10,6 +10,8 @@ import {
   VerifyAccount,
   Error,
   Layout,
+  Settings,
+  Users,
 } from './Pages'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -49,6 +51,16 @@ const router = createBrowserRouter([
         element: <SingleClient></SingleClient>,
         errorElement: <ErrorElement></ErrorElement>,
         loader: singleClientLoader,
+      },
+      {
+        path: 'settings',
+        element: <Settings></Settings>,
+        errorElement: <ErrorElement></ErrorElement>,
+      },
+      {
+        path: 'users',
+        element: <Users></Users>,
+        errorElement: <ErrorElement></ErrorElement>,
       },
     ],
   },
