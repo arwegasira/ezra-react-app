@@ -1,14 +1,27 @@
 import { Formik, Form } from 'formik'
 import FormIkInput from './FormIk/FormikInput'
 import FormIkSelect from './FormIk/FormIkSelect'
-const onSubmit = async (values, actions) => {
-  console.log(values)
-}
+import { useLoaderData, useNavigate } from 'react-router-dom'
+
 const UserFilter = () => {
+  const navigate = useNavigate()
+  const onSubmit = (values, actions) => {
+    const url = `/users?name=${values.name}&email=${values.email}&role=${values.role}`
+    navigate(url)
+  }
+
+  const {
+    params: { name, email, role },
+  } = useLoaderData()
+
   return (
     <section className='mt-10 md:flex md:justify-center'>
       <Formik
-        initialValues={{ name: '', email: '', role: '' }}
+        initialValues={{
+          name: name ? name : '',
+          email: email ? email : '',
+          role: role ? role : '',
+        }}
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
@@ -44,8 +57,9 @@ const UserFilter = () => {
                 Apply Filters
               </button>
               <button
-                type='submit'
+                type='button'
                 className='btn secondary-btns btn-sm w-full rounded-lg'
+                onClick={() => navigate('/users')}
               >
                 Clear
               </button>
