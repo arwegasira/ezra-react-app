@@ -22,6 +22,7 @@ import { action as loginAction } from './Pages/Login'
 import { loader as landingLoader } from './Pages/Landing'
 import { loader as homeLoader } from './Pages/Home'
 import { loader as singleClientLoader } from './Pages/SingleClient'
+import { loader as usersLoader } from './Pages/Users'
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -61,6 +62,7 @@ const router = createBrowserRouter([
         path: 'users',
         element: <Users></Users>,
         errorElement: <ErrorElement></ErrorElement>,
+        loader: usersLoader,
       },
     ],
   },
