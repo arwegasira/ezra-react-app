@@ -1,3 +1,4 @@
+import { PaginationContainer } from '../Components'
 import UserFilter from '../Components/UserFilter'
 import UsersList from '../Components/UsersList'
 import { customFetch } from '../utils'
@@ -9,10 +10,18 @@ export const loader = async ({ request }) => {
     const response = await customFetch.get(
       `/users?name=${params.name ? params.name : ''}&email=${
         params.email ? params.email : ''
-      }&role=${params.role ? params.role : ''}`
+      }&role=${params.role ? params.role : ''}&page=${
+        params.page ? params.page : ''
+      }`
     )
 
-    return { users: response?.data?.users, meta: response.data.meta, params }
+    return {
+      users: response?.data?.users,
+      meta: response.data.meta,
+      params,
+      pageCount: response?.data?.meta?.numOfPages,
+      page: response?.data?.meta?.page,
+    }
   } catch (error) {
     return error
   }
@@ -30,6 +39,7 @@ const Users = () => {
       </div>
       <UserFilter></UserFilter>
       <UsersList></UsersList>
+      <PaginationContainer></PaginationContainer>
     </div>
   )
 }

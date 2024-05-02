@@ -12,20 +12,20 @@ const UsersList = () => {
             key={userId}
             className='w-full md:w-[90%] md:max-w-[70rem]  mb-6 bg-neutral-200 lg:bg-neutral-100 bg-shadow-md rounded lg:rounded-lg lg:grid lg:grid-cols-4'
           >
-            <li className='p-4  lg:py-2 flex justify-between lg:flex-col text-sm md:text-base'>
+            <li className='p-4  lg:py-2 flex justify-between lg:flex-col lg:flex-wrap text-sm md:text-base'>
               <span className='font-medium'>First Name</span>
               <span>{firstName}</span>
             </li>
-            <li className='p-4  lg:py-2 flex justify-between lg:flex-col text-sm md:text-base'>
+            <li className='p-4  lg:py-2 flex justify-between lg:flex-col lg:flex-wrap text-sm md:text-base'>
               <span className='font-medium'>Last Name</span>
               <span>{lastName}</span>
             </li>
-            <li className='p-4 lg:py-2 flex justify-between lg:flex-col text-sm md:text-base '>
+            <li className='p-4 lg:py-2 flex justify-between  lg:flex-col lg:flex-wrap text-sm md:text-base '>
               <span className='font-medium'>Email</span>
               <span>{email}</span>
             </li>
             <li className='p-4 lg:py-2 lg:flex lg:justify-between'>
-              <div className='flex justify-between lg:flex-col text-sm md:text-base'>
+              <div className='flex justify-between lg:flex-col lg:flex-wrap text-sm md:text-base'>
                 <span className='font-medium'>Role</span>
                 <span>{role}</span>
               </div>
