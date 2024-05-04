@@ -1,8 +1,13 @@
-import { PaginationContainer } from '../Components'
+import { EditDialog, PaginationContainer } from '../Components'
 import UserFilter from '../Components/UserFilter'
 import UsersList from '../Components/UsersList'
 import { customFetch } from '../utils'
-
+import { NewUserForm } from '../Components'
+import { useSelector, useDispatch } from 'react-redux'
+import { openEditDialog } from '../feature/EditDialog/editDialog'
+const forms = {
+  newUserForm: <NewUserForm></NewUserForm>,
+}
 export const loader = async ({ request }) => {
   const url = new URL(request.url)
   const params = Object.fromEntries(url.searchParams.entries())
@@ -27,17 +32,24 @@ export const loader = async ({ request }) => {
   }
 }
 const Users = () => {
+  const { currentForm } = useSelector((store) => store.editDialogState)
+  const dispatch = useDispatch()
+  const handleOpenDialog = () => {
+    dispatch(openEditDialog({ currentForm: 'newUserForm' }))
+  }
   return (
     <div>
       <div className='mb-8 flex justify-center sm:justify-end w-[90%] max-w-[70rem] mx-auto'>
         <button
           type='button'
           className='btn primary-btns btn-sm w-[90%] max-w-72'
+          onClick={handleOpenDialog}
         >
           New User
         </button>
       </div>
       <UserFilter></UserFilter>
+      <EditDialog>{forms[currentForm]}</EditDialog>
       <UsersList></UsersList>
       <PaginationContainer></PaginationContainer>
     </div>

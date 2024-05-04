@@ -71,3 +71,5 @@ export const verifyAccountValidation = Yup.object({
     .oneOf([Yup.ref('newPassword'), null], 'Password must match')
     .required('Required'),
 })
+
+export const userRoles = ['', 'Admin', 'user']
