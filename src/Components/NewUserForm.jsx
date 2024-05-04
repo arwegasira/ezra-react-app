@@ -67,6 +67,7 @@ const NewUserForm = () => {
               <button
                 type='button'
                 className='btn secondary-btns w-full md:w-[30%]'
+                onClick={() => dispatch(closeEditDialog())}
               >
                 Cancel
               </button>
