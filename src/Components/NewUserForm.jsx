@@ -66,7 +66,7 @@ const NewUserForm = () => {
             <div className='mt-6 flex flex-col gap-3 md:flex-row md:justify-center'>
               <button
                 type='button'
-                className='btn secondary-btns w-full md:w-[30%]'
+                className='btn secondary-btns w-full md:w-[30%] outline-0 focus:outline-0'
                 onClick={() => dispatch(closeEditDialog())}
               >
                 Cancel
@@ -74,7 +74,7 @@ const NewUserForm = () => {
               <button
                 type='submit'
                 disabled={isSubmitting}
-                className='btn primary-btns w-full md:w-[30%]'
+                className='btn primary-btns w-full md:w-[30%] outline-0 focus:outline-0'
               >
                 {isSubmitting ? 'Submitting..' : 'Save'}
               </button>
