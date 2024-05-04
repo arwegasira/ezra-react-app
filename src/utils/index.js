@@ -72,4 +72,11 @@ export const verifyAccountValidation = Yup.object({
     .required('Required'),
 })
 
-export const userRoles = ['', 'Admin', 'user']
+export const userRoles = ['', 'Admin', 'Front Desk']
+
+export const newUserValidation = Yup.object({
+  email: Yup.string().email('Invalid email').required('Required'),
+  firstName: Yup.string().required('Required'),
+  lastName: Yup.string().required('Required'),
+  role: Yup.string().oneOf(userRoles).required('Required'),
+})
