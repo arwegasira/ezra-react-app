@@ -2,6 +2,7 @@ import { Formik, Form } from 'formik'
 import FormIkInput from './FormIk/FormikInput'
 import FormIkSelect from './FormIk/FormIkSelect'
 import { useLoaderData, useNavigate } from 'react-router-dom'
+import { userRoles } from '../utils'
 
 const UserFilter = () => {
   const navigate = useNavigate()
@@ -46,7 +47,7 @@ const UserFilter = () => {
                 size='select-sm'
                 name='role'
                 id='role'
-                options={['', 'Admin', 'user']}
+                options={userRoles}
               ></FormIkSelect>
             </div>
             <div className='mt-4 gap-4 grid grid-cols-1 md:grid-cols-2'>
