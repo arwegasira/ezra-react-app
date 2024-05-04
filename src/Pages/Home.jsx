@@ -4,46 +4,52 @@ import { ClientsContainer } from '../Components'
 import { customFetch } from '../utils'
 import { useNavigate } from 'react-router-dom'
 
-const clientsQuery = (params, url) => {
-  const { idNumber, phoneNumber, email, firstName, lastName, page } = params
+// stop caching
+// const clientsQuery = (params, url) => {
+//   const { idNumber, phoneNumber, email, firstName, lastName, page } = params
 
-  return {
-    queryKey: [
-      'clients',
-      idNumber ?? '',
-      phoneNumber ?? '',
-      email ?? '',
-      lastName ?? '',
-      firstName ?? '',
-      Number(page) ?? 1,
-    ],
-    queryFn: () => customFetch.get(url),
+//   return {
+//     queryKey: [
+//       'clients',
+//       idNumber ?? '',
+//       phoneNumber ?? '',
+//       email ?? '',
+//       lastName ?? '',
+//       firstName ?? '',
+//       Number(page) ?? 1,
+//     ],
+//     queryFn: () => customFetch.get(url),
+//   }
+// }
+export const loader = async ({ request }) => {
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ])
+
+  try {
+    const url = `/client/clients?idNumber=${
+      params.idNumber ? params.idNumber : ''
+    }&&firstName=${params.firstName ? params.firstName : ''}&&lastName=${
+      params.lastName ? params.lastName : ''
+    }&&email=${params.email ? params.email : ''}&&phoneNumber=${
+      params.phoneNumber ? params.phoneNumber : ''
+    }&&page=${params.page ? params.page : ''}`
+    // const response = await queryClient.ensureQueryData(
+    //   clientsQuery(params, url)
+    // )
+    const response = await customFetch.get(url)
+
+    return {
+      params,
+      clients: response.data.clients,
+      pageCount: response.data.numofPages,
+      page: response.data.page,
+      totalClients: response.data.totalClients,
+    }
+  } catch (error) {
+    return error
   }
 }
-export const loader =
-  (queryClient) =>
-  async ({ request }) => {
-    const params = Object.fromEntries([
-      ...new URL(request.url).searchParams.entries(),
-    ])
-
-    try {
-      const url = `/client/clients?idNumber=${params.idNumber}&&firstName=${params.firstName}&&lastName=${params.lastName}&&email=${params.email}&&phoneNumber=${params.phoneNumber}&&page=${params.page}`
-      const response = await queryClient.ensureQueryData(
-        clientsQuery(params, url)
-      )
-
-      return {
-        params,
-        clients: response.data.clients,
-        pageCount: response.data.numofPages,
-        page: response.data.page,
-        totalClients: response.data.totalClients,
-      }
-    } catch (error) {
-      return error
-    }
-  }
 const Home = () => {
   const navigate = useNavigate()
   const { clients } = useSelector((store) => store.clientsState)

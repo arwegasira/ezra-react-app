@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         path: 'home',
         element: <Home></Home>,
         errorElement: <ErrorElement></ErrorElement>,
-        loader: homeLoader(queryClient),
+        loader: homeLoader,
       },
       {
         path: 'registerClient',
