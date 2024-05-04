@@ -1,17 +1,34 @@
 import { Formik, Form } from 'formik'
 import FormIkInput from './FormIk/FormikInput'
 import FormIkSelect from './FormIk/FormIkSelect'
-import { userRoles } from '../utils'
+import { customFetch, newUserValidation, userRoles } from '../utils'
 import EditDialogTitle from './EditDialogTitle'
+import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { closeEditDialog } from '../feature/EditDialog/editDialog'
+import { useNavigate } from 'react-router-dom'
+import { showAlert } from '../feature/ErrorAlert/ErrorAlert'
 const NewUserForm = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const onSubmit = async (values, actions) => {
-    console.log(values)
+    try {
+      const response = await customFetch.post('auth/register', values)
+      dispatch(closeEditDialog())
+      toast.success('User added successfully!')
+      navigate('/users')
+      actions.resetForm()
+    } catch (error) {
+      const msg = error?.response?.data || 'Something went wrong'
+      dispatch(showAlert({ msg }))
+    }
   }
   return (
     <section>
       <Formik
         initialValues={{ email: '', firstName: '', lastName: '', role: '' }}
         onSubmit={onSubmit}
+        validationSchema={newUserValidation}
       >
         {({ isSubmitting }) => (
           <Form>
