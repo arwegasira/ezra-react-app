@@ -1,8 +1,15 @@
 import { useLoaderData } from 'react-router-dom'
 import { FaUserEdit } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
+import { openEditDialog } from '../feature/EditDialog/editDialog'
+import { setCurrentUser } from '../feature/user/editUser'
 const UsersList = () => {
   const { users } = useLoaderData()
-
+  const dispatch = useDispatch()
+  const handleEdit = ({ firstName, lastName, email, role }) => {
+    dispatch(openEditDialog({ currentForm: 'editUserAccount' }))
+    dispatch(setCurrentUser({ firstName, lastName, email, role }))
+  }
   return (
     <section className='mt-10 md:flex md:items-center md:flex-col '>
       {users.map((user) => {
@@ -29,7 +36,11 @@ const UsersList = () => {
                 <span className='font-medium'>Role</span>
                 <span>{role}</span>
               </div>
-              <button type='button' className='hidden lg:block lg:text-2xl'>
+              <button
+                type='button'
+                className='hidden lg:block lg:text-2xl outline-0 focus:outline-0'
+                onClick={() => handleEdit({ firstName, lastName, role, email })}
+              >
                 <FaUserEdit></FaUserEdit>
               </button>
             </li>
