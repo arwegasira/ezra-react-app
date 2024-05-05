@@ -5,6 +5,7 @@ import editDialogSlice from './feature/EditDialog/editDialog'
 import errorAlertSlice from './feature/ErrorAlert/ErrorAlert'
 import roomSlice from './feature/Room/room'
 import editServiceSlice from './feature/Services/editServiceSlice'
+import editUser from './feature/user/editUser'
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     errorAlertState: errorAlertSlice,
     roomState: roomSlice,
     editServiceState: editServiceSlice,
+    editUserState: editUser,
   },
 })
