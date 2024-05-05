@@ -6,21 +6,14 @@ import { setCurrentUser } from '../feature/user/editUser'
 const UsersList = () => {
   const { users } = useLoaderData()
   const dispatch = useDispatch()
-  const handleEdit = ({ firstName, lastName, email, role, isVerified }) => {
+  const handleEdit = ({ firstName, lastName, email, role, isActive }) => {
     dispatch(openEditDialog({ currentForm: 'editUserAccount' }))
-    dispatch(setCurrentUser({ firstName, lastName, email, role, isVerified }))
+    dispatch(setCurrentUser({ firstName, lastName, email, role, isActive }))
   }
   return (
     <section className='mt-10 md:flex md:items-center md:flex-col '>
       {users.map((user) => {
-        const {
-          firstName,
-          lastName,
-          role,
-          email,
-          _id: userId,
-          isVerified,
-        } = user
+        const { firstName, lastName, role, email, _id: userId, isActive } = user
         return (
           <ul
             key={userId}
@@ -47,7 +40,7 @@ const UsersList = () => {
                 type='button'
                 className='hidden lg:block lg:text-2xl outline-0 focus:outline-0'
                 onClick={() =>
-                  handleEdit({ firstName, lastName, role, email, isVerified })
+                  handleEdit({ firstName, lastName, role, email, isActive })
                 }
               >
                 <FaUserEdit></FaUserEdit>
