@@ -1,4 +1,4 @@
-import { EditDialog, PaginationContainer } from '../Components'
+import { EditDialog, EditUserAccount, PaginationContainer } from '../Components'
 import UserFilter from '../Components/UserFilter'
 import UsersList from '../Components/UsersList'
 import { customFetch } from '../utils'
@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { openEditDialog } from '../feature/EditDialog/editDialog'
 const forms = {
   newUserForm: <NewUserForm></NewUserForm>,
+  editUserAccount: <EditUserAccount></EditUserAccount>,
 }
 export const loader = async ({ request }) => {
   const url = new URL(request.url)
