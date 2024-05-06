@@ -6,9 +6,18 @@ import { setCurrentUser } from '../feature/user/editUser'
 const UsersList = () => {
   const { users } = useLoaderData()
   const dispatch = useDispatch()
-  const handleEdit = ({ firstName, lastName, email, role, isActive }) => {
+  const handleEdit = ({
+    firstName,
+    lastName,
+    email,
+    role,
+    isActive,
+    userId,
+  }) => {
     dispatch(openEditDialog({ currentForm: 'editUserAccount' }))
-    dispatch(setCurrentUser({ firstName, lastName, email, role, isActive }))
+    dispatch(
+      setCurrentUser({ firstName, lastName, email, role, isActive, userId })
+    )
   }
   return (
     <section className='mt-10 md:flex md:items-center md:flex-col '>
@@ -40,7 +49,14 @@ const UsersList = () => {
                 type='button'
                 className='hidden lg:block lg:text-2xl outline-0 focus:outline-0'
                 onClick={() =>
-                  handleEdit({ firstName, lastName, role, email, isActive })
+                  handleEdit({
+                    firstName,
+                    lastName,
+                    role,
+                    email,
+                    isActive,
+                    userId,
+                  })
                 }
               >
                 <FaUserEdit></FaUserEdit>
