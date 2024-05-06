@@ -5,6 +5,7 @@ const initialState = {
   email: null,
   role: null,
   isActive: null,
+  userId: null,
 }
 
 const editUserSlice = createSlice({
@@ -17,6 +18,7 @@ const editUserSlice = createSlice({
       state.email = action.payload.email
       state.role = action.payload.role
       state.isActive = action.payload.isActive
+      state.userId = action.payload.userId
     },
   },
 })
