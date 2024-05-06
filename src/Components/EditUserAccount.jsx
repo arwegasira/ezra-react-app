@@ -3,18 +3,33 @@ import { Formik, Form } from 'formik'
 import EditDialogTitle from './EditDialogTitle'
 import FormIkInput from './FormIk/FormikInput'
 import FormIkSelect from './FormIk/FormIkSelect'
-import { userRoles } from '../utils'
+import { customFetch, userRoles } from '../utils'
 import { closeEditDialog } from '../feature/EditDialog/editDialog'
 import FormIkCheckBox from './FormIk/FormIkCheckBox'
 import { newUserValidation } from '../utils'
+import { toast } from 'react-toastify'
+import { showAlert } from '../feature/ErrorAlert/ErrorAlert'
+import { useLocation, useNavigate } from 'react-router-dom'
 const EditUserAccount = () => {
-  const { firstName, lastName, role, email, isActive } = useSelector(
+  const { firstName, lastName, role, email, isActive, userId } = useSelector(
     (store) => store.editUserState
   )
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { pathname, search } = useLocation()
   const onSubmit = async (values) => {
     values.isActive = values.isActive ? values.isActive : false
-    console.log(values)
+    values.userId = userId
+    try {
+      const response = await customFetch.patch('/auth/edit-user', values)
+      dispatch(closeEditDialog())
+      const searchParams = new URLSearchParams(search)
+      navigate(`${pathname}?${searchParams.toString()}`)
+      toast.success('User updated successfully!')
+    } catch (error) {
+      const msg = error?.response?.data || 'Something went wrong'
+      dispatch(showAlert({ msg }))
+    }
   }
   return (
     <section>
