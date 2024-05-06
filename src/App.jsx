@@ -12,6 +12,7 @@ import {
   Layout,
   Settings,
   Users,
+  Rooms,
 } from './Pages'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -23,6 +24,7 @@ import { loader as landingLoader } from './Pages/Landing'
 import { loader as homeLoader } from './Pages/Home'
 import { loader as singleClientLoader } from './Pages/SingleClient'
 import { loader as usersLoader } from './Pages/Users'
+import { loader as roomsLoader } from './Pages/Rooms'
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -63,6 +65,12 @@ const router = createBrowserRouter([
         element: <Users></Users>,
         errorElement: <ErrorElement></ErrorElement>,
         loader: usersLoader,
+      },
+      {
+        path: 'rooms',
+        element: <Rooms></Rooms>,
+        errorElement: <ErrorElement></ErrorElement>,
+        loader: roomsLoader,
       },
     ],
   },
