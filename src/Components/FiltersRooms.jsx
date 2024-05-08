@@ -2,12 +2,22 @@ import { Formik, Form } from 'formik'
 import FormIkInput from './FormIk/FormikInput'
 import FormIkSelect from './FormIk/FormIkSelect'
 import { useLoaderData } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const FiltersRooms = () => {
+  const navigate = useNavigate()
   const {
     params: { name, roomType, status },
   } = useLoaderData()
-  const onSubmit = (values) => {
-    console.log(values)
+  const onSubmit = async (values) => {
+    try {
+      navigate(
+        `/rooms?name=${values.name ? values.name : ''}&roomType=${
+          values.roomType ? values.roomType : ''
+        }&status=${values.status ? values.status : ''}`
+      )
+    } catch (error) {
+      return error
+    }
   }
 
   return (
@@ -55,6 +65,7 @@ const FiltersRooms = () => {
               <button
                 type='button'
                 className='btn secondary-btns btn-sm w-full rounded-lg'
+                onClick={() => navigate('/rooms')}
               >
                 Clear
               </button>
