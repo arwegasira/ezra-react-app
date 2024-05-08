@@ -1,4 +1,5 @@
 import { FilterRooms } from '../Components'
+import RoomsList from '../Components/RoomsList'
 import { customFetch } from '../utils'
 
 export const loader = async ({ request }) => {
@@ -33,6 +34,7 @@ const Rooms = () => {
         </button>
       </section>
       <FilterRooms></FilterRooms>
+      <RoomsList></RoomsList>
     </>
   )
 }
