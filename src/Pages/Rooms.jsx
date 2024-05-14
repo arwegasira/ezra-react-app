@@ -1,4 +1,4 @@
-import { FilterRooms } from '../Components'
+import { FilterRooms, PaginationContainer } from '../Components'
 import RoomsList from '../Components/RoomsList'
 import { customFetch } from '../utils'
 
@@ -25,16 +25,17 @@ export const loader = async ({ request }) => {
 const Rooms = () => {
   return (
     <>
-      <section className='mb-8 flex justify-center sm:justify-end w-[90%] max-w-[70rem] mx-auto'>
+      <section className='mb-8 flex justify-center sm:justify-end w-[90%] max-w-[80rem] mx-auto'>
         <button
           type='button'
           className='btn primary-btns btn-sm w-[90%] max-w-72'
         >
-          New User
+          New Room
         </button>
       </section>
       <FilterRooms></FilterRooms>
       <RoomsList></RoomsList>
+      <PaginationContainer></PaginationContainer>
     </>
   )
 }
