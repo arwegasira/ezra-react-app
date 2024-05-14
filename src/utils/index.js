@@ -73,6 +73,7 @@ export const verifyAccountValidation = Yup.object({
 })
 
 export const userRoles = ['', 'Admin', 'Front Desk']
+export const roomTypes = ['', 'Single', 'Double']
 
 export const newUserValidation = Yup.object({
   email: Yup.string().email('Invalid email').required('Required'),

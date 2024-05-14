@@ -3,6 +3,7 @@ import FormIkInput from './FormIk/FormikInput'
 import FormIkSelect from './FormIk/FormIkSelect'
 import { useLoaderData } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { roomTypes } from '../utils'
 const FiltersRooms = () => {
   const navigate = useNavigate()
   const {
@@ -45,7 +46,7 @@ const FiltersRooms = () => {
                 size='select-sm'
                 name='roomType'
                 id='roomType'
-                options={['', 'Single', 'Double']}
+                options={roomTypes}
               ></FormIkSelect>
               <FormIkSelect
                 label='Status'
