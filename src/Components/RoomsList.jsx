@@ -1,9 +1,11 @@
 import { useLoaderData } from 'react-router-dom'
 import { FaRegEdit } from 'react-icons/fa'
 import { dateFormatShortMonth } from '../utils'
+import { useDispatch } from 'react-redux'
+import { openEditDialog } from '../feature/EditDialog/editDialog'
 const RoomsList = () => {
   const { rooms } = useLoaderData()
-  console.log(rooms)
+  const dispatch = useDispatch()
   return (
     <section className='mt-10 md:flex md:justify-center overflow-x-scroll'>
       <table className='table table-xs md:table-md w-full md:w-[90%] md:max-w-[80rem]'>
@@ -43,7 +45,13 @@ const RoomsList = () => {
                   {occupationEnd ? dateFormatShortMonth(occupationEnd) : ''}
                 </td>
                 <td className='flex justify-end'>
-                  <button type='button' className='text-sm md:text-lg'>
+                  <button
+                    type='button'
+                    className='text-sm md:text-lg'
+                    onClick={() =>
+                      dispatch(openEditDialog({ currentForm: 'editRoom' }))
+                    }
+                  >
                     <FaRegEdit></FaRegEdit>
                   </button>
                 </td>
