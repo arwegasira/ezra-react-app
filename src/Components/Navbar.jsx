@@ -8,7 +8,7 @@ const Navbar = () => {
     setIsOpen(!isOpen)
   }
   return (
-    <section className='p-4 relative'>
+    <section className='p-4 relative z-10'>
       <button className='text-xl'>
         <VscThreeBars onClick={() => toggleNav()}></VscThreeBars>
       </button>
