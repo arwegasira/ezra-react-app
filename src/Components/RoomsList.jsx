@@ -3,12 +3,18 @@ import { FaRegEdit } from 'react-icons/fa'
 import { dateFormatShortMonth } from '../utils'
 import { useDispatch } from 'react-redux'
 import { openEditDialog } from '../feature/EditDialog/editDialog'
+import { setCurrentRoom } from '../feature/Room/editRoom'
 const RoomsList = () => {
   const { rooms } = useLoaderData()
   const dispatch = useDispatch()
+
+  const handleOpenDialog = ({ name, roomType, price, roomId }) => {
+    dispatch(openEditDialog({ currentForm: 'editRoom' }))
+    dispatch(setCurrentRoom({ name, roomType, price, roomId }))
+  }
   return (
     <section className='mt-10 md:flex md:justify-center overflow-x-scroll'>
-      <table className='table table-xs md:table-md w-full md:w-[90%] md:max-w-[80rem]'>
+      <table className='table table-xs md:table-md w-full md:w-[90%] md:max-w-[80rem] shadow-sm'>
         <thead>
           <tr>
             <th>Name</th>
@@ -49,7 +55,7 @@ const RoomsList = () => {
                     type='button'
                     className='text-sm md:text-lg'
                     onClick={() =>
-                      dispatch(openEditDialog({ currentForm: 'editRoom' }))
+                      handleOpenDialog({ roomId, name, price, roomType })
                     }
                   >
                     <FaRegEdit></FaRegEdit>
