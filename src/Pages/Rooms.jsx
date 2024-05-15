@@ -3,10 +3,12 @@ import {
   FilterRooms,
   PaginationContainer,
   EditRoom,
+  NewRoomForm,
 } from '../Components'
 import RoomsList from '../Components/RoomsList'
+import { openEditDialog } from '../feature/EditDialog/editDialog'
 import { customFetch } from '../utils'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url)
@@ -30,15 +32,18 @@ export const loader = async ({ request }) => {
 }
 const forms = {
   editRoom: <EditRoom></EditRoom>,
+  newRoom: <NewRoomForm></NewRoomForm>,
 }
 const Rooms = () => {
   const { currentForm } = useSelector((store) => store.editDialogState)
+  const dispatch = useDispatch()
   return (
     <>
       <section className='mb-8 flex justify-center sm:justify-end w-[90%] max-w-[80rem] mx-auto'>
         <button
           type='button'
           className='btn primary-btns btn-sm w-[90%] max-w-72'
+          onClick={() => dispatch(openEditDialog({ currentForm: 'newRoom' }))}
         >
           New Room
         </button>
