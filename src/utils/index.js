@@ -81,3 +81,9 @@ export const newUserValidation = Yup.object({
   lastName: Yup.string().required('Required'),
   role: Yup.string().oneOf(userRoles).required('Required'),
 })
+
+export const roomValidation = Yup.object({
+  name: Yup.string().required('Required'),
+  roomType: Yup.string().required('Required').oneOf(roomTypes),
+  price: Yup.number().required('Required'),
+})
