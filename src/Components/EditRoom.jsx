@@ -23,8 +23,8 @@ const EditRoom = () => {
       navigate(`${pathname}?${searchParams.toString()}`)
       toast.success('Room updated successfully!')
     } catch (error) {
-      console.log(error)
-      return error
+      const msg = error?.response?.data || 'Something went wrong'
+      dispatch(showAlert({ msg }))
     }
   }
   return (
