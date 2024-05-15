@@ -10,6 +10,7 @@ import { showAlert } from '../feature/ErrorAlert/ErrorAlert'
 import { useLocation, useNavigate } from 'react-router-dom'
 const EditRoom = () => {
   const dispatch = useDispatch()
+  const { name, roomType, price } = useSelector((store) => store.editRoom)
   const onSubmit = async (values) => {
     console.log(values)
   }
@@ -17,10 +18,9 @@ const EditRoom = () => {
     <section>
       <Formik
         initialValues={{
-          name: '',
-          roomType: '',
-          price: '',
-          status: '',
+          name: name,
+          roomType: roomType,
+          price: price,
         }}
         onSubmit={onSubmit}
       >
