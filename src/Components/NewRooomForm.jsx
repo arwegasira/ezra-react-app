@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik'
 import EditDialogTitle from './EditDialogTitle'
 import FormIkInput from './FormIk/FormikInput'
 import FormIkSelect from './FormIk/FormIkSelect'
-import { customFetch, roomTypes } from '../utils'
+import { customFetch, roomTypes, roomValidation } from '../utils'
 import { closeEditDialog } from '../feature/EditDialog/editDialog'
 import { toast } from 'react-toastify'
 import { showAlert } from '../feature/ErrorAlert/ErrorAlert'
@@ -31,6 +31,7 @@ const NewRooomForm = () => {
           roomType: '',
           price: '',
         }}
+        validationSchema={roomValidation}
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
