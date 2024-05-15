@@ -10,9 +10,22 @@ import { showAlert } from '../feature/ErrorAlert/ErrorAlert'
 import { useLocation, useNavigate } from 'react-router-dom'
 const EditRoom = () => {
   const dispatch = useDispatch()
-  const { name, roomType, price } = useSelector((store) => store.editRoom)
+  const navigate = useNavigate()
+  const { pathname, search } = useLocation()
+  const { name, roomType, price, roomId } = useSelector(
+    (store) => store.editRoom
+  )
   const onSubmit = async (values) => {
-    console.log(values)
+    try {
+      const response = await customFetch.patch(`/rooms/${roomId}`, values)
+      dispatch(closeEditDialog())
+      const searchParams = new URLSearchParams(search)
+      navigate(`${pathname}?${searchParams.toString()}`)
+      toast.success('Room updated successfully!')
+    } catch (error) {
+      console.log(error)
+      return error
+    }
   }
   return (
     <section>
