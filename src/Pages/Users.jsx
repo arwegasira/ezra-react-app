@@ -5,6 +5,8 @@ import { customFetch } from '../utils'
 import { NewUserForm } from '../Components'
 import { useSelector, useDispatch } from 'react-redux'
 import { openEditDialog } from '../feature/EditDialog/editDialog'
+import { redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
 const forms = {
   newUserForm: <NewUserForm></NewUserForm>,
   editUserAccount: <EditUserAccount></EditUserAccount>,
@@ -29,6 +31,15 @@ export const loader = async ({ request }) => {
       page: response?.data?.meta?.page,
     }
   } catch (error) {
+    const status = error?.response.status
+    //unAuthorized
+    if (status === 403) {
+    }
+    //unAuthenticated
+    if (status === 401) {
+      toast.warn('Unauthenticated, Login again')
+      return redirect('/login')
+    }
     return error
   }
 }
