@@ -6,6 +6,7 @@ import { FaServicestack } from 'react-icons/fa'
 import { FaUsers } from 'react-icons/fa6'
 import { HiMiniUsers } from 'react-icons/hi2'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 const links = [
   {
     id: 1,
@@ -45,12 +46,18 @@ const links = [
   // },
 ]
 const Navlinks = ({ toggleNav }) => {
+  const {
+    user: { role },
+  } = useSelector((store) => store.user)
   return (
     <>
       {links.map((link) => {
         const { id, text, icon, url } = link
+        if ((url === 'users' || url === 'rooms') && role !== 'Admin') {
+          return
+        }
         return (
-          <li key={link.id} className=''>
+          <li key={id} className=''>
             <NavLink
               to={url}
               className='nav-links flex gap-3 text-slate-50 items-center py-1 px-5 hover:border-2 hover:border-amber-400 hover:rounded-xl'
