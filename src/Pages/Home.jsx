@@ -2,8 +2,8 @@ import { ClientFilter, PaginationContainer } from '../Components'
 import { useSelector } from 'react-redux'
 import { ClientsContainer } from '../Components'
 import { customFetch } from '../utils'
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate, redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
 // stop caching
 // const clientsQuery = (params, url) => {
 //   const { idNumber, phoneNumber, email, firstName, lastName, page } = params
@@ -47,6 +47,15 @@ export const loader = async ({ request }) => {
       totalClients: response.data.totalClients,
     }
   } catch (error) {
+    const status = error?.response.status
+    //unAuthorized
+    if (status === 403) {
+    }
+    //unAuthenticated
+    if (status === 401) {
+      toast.warn('Unauthenticated, Login again')
+      return redirect('/login')
+    }
     return error
   }
 }

@@ -9,6 +9,8 @@ import RoomsList from '../Components/RoomsList'
 import { openEditDialog } from '../feature/EditDialog/editDialog'
 import { customFetch } from '../utils'
 import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import { redirect } from 'react-router-dom'
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url)
@@ -27,6 +29,15 @@ export const loader = async ({ request }) => {
       pageCount: response?.data?.numOfPages,
     }
   } catch (error) {
+    const status = error?.response.status
+    //unAuthorized
+    if (status === 403) {
+    }
+    //unAuthenticated
+    if (status === 401) {
+      toast.warn('Unauthenticated, Login again')
+      return redirect('/login')
+    }
     return error
   }
 }
