@@ -6,6 +6,7 @@ export const customFetch = axios.create({
     environment === 'Dev'
       ? 'http://localhost:80/api/v1'
       : 'https://ezra-back-end.onrender.com/api/v1',
+  withCredentials: true,
 })
 
 export const dateFormat = (date) => {
