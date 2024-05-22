@@ -52,7 +52,7 @@ const Users = () => {
   }
   return (
     <div>
-      <div className='mb-8 flex justify-center sm:justify-end w-[90%] max-w-[70rem] mx-auto'>
+      <div className='mb-8 flex justify-center sm:justify-end w-[90%] max-w-[80rem] mx-auto'>
         <button
           type='button'
           className='btn primary-btns btn-sm w-[90%] max-w-72'

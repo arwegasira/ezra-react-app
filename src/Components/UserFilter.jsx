@@ -26,7 +26,7 @@ const UserFilter = () => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className='bg-blue-50 py-8 px-4 rounded-lg shadow-sm w-full md:w-[90%] md:max-w-[70rem]'>
+          <Form className='bg-blue-50 py-8 px-4 rounded-lg shadow-sm w-full md:w-[90%] md:max-w-[80rem]'>
             <div className='grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
               <FormIkInput
                 label='Name'

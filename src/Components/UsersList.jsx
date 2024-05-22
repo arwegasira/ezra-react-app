@@ -20,51 +20,56 @@ const UsersList = () => {
     )
   }
   return (
-    <section className='mt-10 md:flex md:items-center md:flex-col '>
-      {users.map((user) => {
-        const { firstName, lastName, role, email, _id: userId, isActive } = user
-        return (
-          <ul
-            key={userId}
-            className='w-full md:w-[90%] md:max-w-[70rem]  mb-6 bg-neutral-200 lg:bg-neutral-100 bg-shadow-md rounded lg:rounded-lg lg:grid lg:grid-cols-4'
-          >
-            <li className='p-4  lg:py-2 flex justify-between lg:flex-col lg:flex-wrap text-sm md:text-base'>
-              <span className='font-medium'>First Name</span>
-              <span>{firstName}</span>
-            </li>
-            <li className='p-4  lg:py-2 flex justify-between lg:flex-col lg:flex-wrap text-sm md:text-base'>
-              <span className='font-medium'>Last Name</span>
-              <span>{lastName}</span>
-            </li>
-            <li className='p-4 lg:py-2 flex justify-between  lg:flex-col lg:flex-wrap text-sm md:text-base '>
-              <span className='font-medium'>Email</span>
-              <span>{email}</span>
-            </li>
-            <li className='p-4 lg:py-2 lg:flex lg:justify-between'>
-              <div className='flex justify-between lg:flex-col lg:flex-wrap text-sm md:text-base'>
-                <span className='font-medium'>Role</span>
-                <span>{role}</span>
-              </div>
-              <button
-                type='button'
-                className='hidden lg:block lg:text-2xl outline-0 focus:outline-0'
-                onClick={() =>
-                  handleEdit({
-                    firstName,
-                    lastName,
-                    role,
-                    email,
-                    isActive,
-                    userId,
-                  })
-                }
-              >
-                <FaUserEdit></FaUserEdit>
-              </button>
-            </li>
-          </ul>
-        )
-      })}
+    <section className='mt-10 md:flex md:justify-center overflow-x-scroll'>
+      <table className='table table-xs md:table-md w-full md:w-[90%] md:max-w-[80rem] shadow-sm'>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => {
+            const {
+              firstName,
+              lastName,
+              role,
+              email,
+              _id: userId,
+              isActive,
+            } = user
+            return (
+              <tr key={userId} className='hover'>
+                <td>{firstName}</td>
+                <td>{lastName}</td>
+                <td>{email}</td>
+                <td>{role}</td>
+                <td className='flex flex-end'>
+                  <button
+                    type='button'
+                    className='hidden lg:block text-sm md:text-lg outline-0 focus:outline-0'
+                    onClick={() =>
+                      handleEdit({
+                        firstName,
+                        lastName,
+                        role,
+                        email,
+                        isActive,
+                        userId,
+                      })
+                    }
+                  >
+                    <FaUserEdit></FaUserEdit>
+                  </button>
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </section>
   )
 }
