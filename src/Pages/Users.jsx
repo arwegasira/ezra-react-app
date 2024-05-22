@@ -34,6 +34,7 @@ export const loader = async ({ request }) => {
     const status = error?.response.status
     //unAuthorized
     if (status === 403) {
+      return redirect('/home')
     }
     //unAuthenticated
     if (status === 401) {
