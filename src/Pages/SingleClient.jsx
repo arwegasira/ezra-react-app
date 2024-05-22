@@ -1,12 +1,14 @@
 import { customFetch } from '../utils'
-import { useLoaderData } from 'react-router-dom'
+import { redirect } from 'react-router-dom'
 import {
   ClientInfoDetails,
   ClientProfile,
   EditDialog,
   Tabs,
 } from '../Components'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+
 import {
   AddAccommodation,
   EditUserProfile,
@@ -25,9 +27,23 @@ const formDialogs = {
 export const loader = async ({ params }) => {
   const { id } = params
   const url = `client/getclientbyid/${id}`
-  const response = await customFetch(url)
 
-  return { client: response.data.client }
+  try {
+    const response = await customFetch(url)
+    return { client: response.data.client }
+  } catch (error) {
+    const status = error?.response.status
+    //unAuthorized
+    if (status === 403) {
+      return redirect('/login')
+    }
+    //unAuthenticated
+    if (status === 401) {
+      toast.warn('Unauthenticated, Login again')
+      return redirect('/login')
+    }
+    return error
+  }
 }
 const SingleClient = () => {
   const { currentForm } = useSelector((store) => store.editDialogState)
