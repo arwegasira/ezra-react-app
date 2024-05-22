@@ -2,10 +2,28 @@ import { VscThreeBars } from 'react-icons/vsc'
 import { AiOutlineClose } from 'react-icons/ai'
 import Navlinks from './Navlinks'
 import { useState } from 'react'
+import { logout } from '../feature/user/userSlice'
+import { customFetch } from '../utils'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const toggleNav = () => {
     setIsOpen(!isOpen)
+  }
+  const handleLogOut = async () => {
+    try {
+      await customFetch.delete('/auth/logout')
+      dispatch(logout())
+      navigate('/login')
+    } catch (error) {
+      toast.error('Please try logging out again')
+      return error
+    }
   }
   return (
     <section className='p-4 relative z-10'>
@@ -29,7 +47,12 @@ const Navbar = () => {
           <Navlinks toggleNav={toggleNav}></Navlinks>
         </ul>
         <div className='grid place-items-center'>
-          <button className='btn btn-sm primary-btns w-[70%]'>Log out</button>
+          <button
+            className='btn btn-sm primary-btns w-[70%]'
+            onClick={() => handleLogOut()}
+          >
+            Log out
+          </button>
         </div>
       </div>
     </section>
