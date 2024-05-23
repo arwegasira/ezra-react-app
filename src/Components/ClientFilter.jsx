@@ -29,7 +29,7 @@ const ClientFilter = () => {
           type='text'
           name='name'
           size='input-sm'
-          defaultValue={params.firstName && params.firstName}
+          defaultValue={params.name && params.name}
         ></FormInput>
 
         <FormInput

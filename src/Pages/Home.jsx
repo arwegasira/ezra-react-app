@@ -33,7 +33,9 @@ export const loader = async ({ request }) => {
       params.lastName ? params.lastName : ''
     }&&email=${params.email ? params.email : ''}&&phoneNumber=${
       params.phoneNumber ? params.phoneNumber : ''
-    }&&page=${params.page ? params.page : ''}`
+    }&&page=${params.page ? params.page : ''}&&name=${
+      params.name ? params.name : ''
+    }`
     // const response = await queryClient.ensureQueryData(
     //   clientsQuery(params, url)
     // )
