@@ -4,6 +4,7 @@ const Client = ({
   _id,
   lastName,
   firstName,
+  middleName,
   gender,
   nationality,
   idNumber,
@@ -14,7 +15,7 @@ const Client = ({
       <div className='flex flex-col'>
         <header className='flex justify-between'>
           <strong>
-            {firstName} {lastName}
+            {firstName} {middleName} {lastName}
           </strong>
           <Link to={`/singleClient/${_id}`} className='text-xl'>
             <FaRegEdit></FaRegEdit>
