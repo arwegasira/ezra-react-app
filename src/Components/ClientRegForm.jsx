@@ -3,18 +3,25 @@ import FormIkInput from '../Components/FormIk/FormikInput'
 import { customFetch, regFormValidation } from '../utils'
 import FormIkSelect from './FormIk/FormIkSelect'
 import { toast } from 'react-toastify'
-const onSubmit = async (values, actions) => {
-  try {
-    const response = await customFetch.post('/client/addclient', values)
-    toast.success('Client added successfully!')
-    actions.resetForm()
-  } catch (error) {
-    const msg = error?.response?.data || 'Something went wrong'
-    toast.error(msg)
-  }
-}
+import { useNavigate } from 'react-router-dom'
 
 const ClientRegForm = () => {
+  const navigate = useNavigate()
+  const onSubmit = async (values, actions) => {
+    try {
+      const response = await customFetch.post('/client/addclient', values)
+      toast.success('Client added successfully!')
+      actions.resetForm()
+    } catch (error) {
+      if (error.response.status === 401 || error.response.status === 403) {
+        navigate('/login')
+        toast.warn('Please login again')
+        return
+      }
+      const msg = error?.response?.data || 'Something went wrong'
+      toast.error(msg)
+    }
+  }
   return (
     <Formik
       initialValues={{
